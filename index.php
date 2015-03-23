@@ -1,6 +1,6 @@
 <?php
 include ('views/message/create.php');
-if (empty($_POST['input'])) {
+if (empty($_POST['btn_message'])) {
     if (empty($_POST['nickName']))  {
         echo 'Please input NICKNAME';
     }
