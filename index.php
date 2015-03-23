@@ -11,9 +11,4 @@ if (empty($_POST['button_message'])) {
 
     }
 }
-if (!file_exists(PATH_TO_LOG)) {
-    echo 'Error. File doesnt exist';
-}
-else {
     logs ('Test', PATH_TO_LOG);
-}
