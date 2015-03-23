@@ -1,4 +1,5 @@
 <?php
+include ('config.php');
 include ('views/message/create.php');
 if (empty($_POST['btn_message'])) {
     if (empty($_POST['nickName']))  {
