@@ -1,2 +1,2 @@
 <?php
-$PATH_TO_LOGS ='./logs';
+define ("PATH_TO_LOG",  './logs/');
