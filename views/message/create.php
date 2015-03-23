@@ -4,7 +4,7 @@
     <input type="text" name="nickName">
     <p>Write message: </p>
     <p><textarea rows="10" cols="45" name="text"></textarea></p>
-    <input type=submit [name=input] value=Submit>
+    <input type=submit name=input value=Submit>
 </form>
 </HTML>
 <?php
