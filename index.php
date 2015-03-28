@@ -1,14 +1,13 @@
 <?php
 include ('config.php');
-include ('libs/logger.php');
 include ('views/message/create.php');
-if (empty($_POST['button_message'])) {
-    if (empty($_POST['nickName']))  {
-        echo "Please input NICKNAME <br>";
-    }
-    else {
-        echo $_POST['nickName'] . ': ' . $_POST['text'] ;
 
-    }
-}
-    logs ('Test', PATH_TO_LOG);
+  if ($_GET['action']=='register'){
+      include ('views/registration.php');
+      include ('libs/validation.php');
+      if (empty($_POST['submit_btn'])) {
+          checkMail($_POST['e-mail']);
+          checkUser($_POST['username']);
+          checkPass($_POST['pass']);
+      }
+  }
