@@ -1,5 +1,5 @@
 <html>
-<form action="register" method="POST">
+<form  method="POST">
 
     <p>E-mail: </p>
     <input type="text" name="e-mail">
