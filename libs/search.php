@@ -10,10 +10,15 @@
     return false;
 }*/
 
-preg_match("/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+\;$/", "example@mail.ru;example;example1", $matches);
-$host = $matches[2];
+/*$raw_query_string = 'act=search&sw=%E1%CC%D8%C2%CF%CD&where=news&cp=35&cp=2';
+preg_match ("/^(.+)(&cp\=\d+)+/", $raw_query_string, $query_string);
+echo "$query_string[1]\n"; // act=search&sw=%E1%CC%D8%C2%CF%CD&where=news&cp=35
+echo "$query_string[2]\n"; // &cp=2*/
 
-// извлекаем две последние части имени хоста
-preg_match("/\;^[a-z0-9]{6,}+$/i", $host, $matches);
-echo "{$matches[0]}\n";
+$text = FILE("user.txt");
+$search = "abra";
+for ($i = 0; $i < count($text); $i++){
+    if (!(stripos($text[$i],$search) === FALSE)) echo $text[$i]."<br>";
+}
+
 ?>
