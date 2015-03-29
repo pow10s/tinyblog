@@ -20,9 +20,6 @@ if ($_GET['action']=='search') {
     include ('views/searchForm.php');
     include ('libs/search.php');
     if (isset($_POST['search_btn'])){
-        searchByUserChunk($_POST['chunkOfName'],'db/user.txt');
-
-
-
+       searchByUserChunk($_POST['chunkOfName'],'db/user.txt');
     }
 }
