@@ -20,6 +20,21 @@ if ($_GET['action']=='search') {
     include ('views/searchForm.php');
     include ('libs/search.php');
     if (isset($_POST['search_btn'])){
-       searchByUserChunk($_POST['chunkOfName'],'db/user.txt');
+       echo searchByUserChunk($_POST['chunkOfName'],'db/user.txt');
+    }
+}
+
+if($_GET['action']=='login'){
+    include ('views/loginForm.php');
+    include ('libs/login.php');
+    if (isset($_POST['enter_btn'])) {
+      if (validationUserNamePass($_POST['loginUserName'], $_POST['loginPassword'], 'db/user.txt',"user")) {
+          echo 'Welcome, ' . $_COOKIE["user"];
+      }
+      elseif($_COOKIE["user"]==$_POST['loginUserName']){
+          exit();
+
+      }
+
     }
 }
