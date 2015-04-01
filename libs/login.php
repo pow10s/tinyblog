@@ -9,10 +9,7 @@ function validationUserNamePass($Name, $Password , $pathFile,$cookieName) {
             if($Name!==$pieces[1] && $Password!==$pieces[2]){
                     return false;
             }
-            else {
-               setcookie($cookieName, $Name);
-                return $_COOKIE["$cookieName"];
-            }
+            return true;
 
         }
 
