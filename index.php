@@ -13,7 +13,6 @@ include ('config.php');
           else {
               echo 'Invalid input.';
           }
-
       }
   }
 if ($_GET['action']=='search') {
@@ -23,19 +22,19 @@ if ($_GET['action']=='search') {
        echo searchByUserChunk($_POST['chunkOfName'],'db/user.txt');
     }
 }
-
 if($_GET['action']=='login'){
     include ('views/loginForm.php');
     include ('libs/login.php');
     if (isset($_POST['enter_btn'])) {
       if (validationUserNamePass($_POST['loginUserName'], $_POST['loginPassword'], 'db/user.txt',"user")) {
           setcookie("user", $_POST['loginUserName']);
+          ob_start();
+          echo 'Welcome, ' . $_COOKIE["user"];
           if (!isset($_COOKIE['user']) || $_COOKIE['user'] == $_POST['loginUserName']){
               include_once 'views/loginForm.php';
-              echo 'Welcome, ' . $_COOKIE["user"];
-
+              ob_end_clean();
+              echo 'You are logged in to your account.';
           }
       }
-
-}
+    }
 }
