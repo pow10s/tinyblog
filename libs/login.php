@@ -12,6 +12,7 @@ function validationUserNamePass($Name, $Password , $pathFile,$cookieName) {
             }
 
         }
+
         return true;
 
     }
