@@ -11,12 +11,4 @@
 
 </form>
 </html>
-<?php
-include "db/scripts/connect.php";
-$email = $_REQUEST['e-mail'];
-$user = $_REQUEST['username'];
-$password = $_REQUEST['pass'];
-$insert_sql = "INSERT INTO users (e-mail, username, pass)" .
-    "VALUES('{$email}', '{$user}', '{$password}');";
-mysql_query($insert_sql);
-    ?>
+
