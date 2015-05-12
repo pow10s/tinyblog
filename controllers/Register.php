@@ -3,6 +3,8 @@
     include('libs/validation.php');
     include('db/addUsers.php');
     if (isset($_POST['submit_btn'])) {
+
+        //Не треба писати checkMail($_POST['e-mail']) == true, checkMail і так вертає true або false. Можна так  if (checkMail($_POST['e-mail']) ...
         if (checkMail($_POST['e-mail']) == true && checkUser($_POST['username']) == true && checkPass($_POST['pass']) == true) {
             addUsersIntoDB($_POST['e-mail'],$_POST['username'] ,$_POST['pass']);
             echo 'Thank you for registering.';
