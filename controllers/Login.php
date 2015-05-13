@@ -9,6 +9,7 @@ include ('views/loginForm.php');
             include 'db/selectFromTable.php';
             selectFromTable('UserName', 'Password', $_POST['loginUserName'], $_POST['loginPassword']);
         }
-
-
     }
+
+
+
