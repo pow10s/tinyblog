@@ -6,5 +6,9 @@ function selectFromTable($loginUserName, $loginPassword)
     $stmt->bindValue(1, $loginUserName, PDO::PARAM_STR);
     $stmt->bindValue(2, $loginPassword, PDO::PARAM_STR);
     $stmt->execute();
-    $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($result)) {
+        return true;
+    }
+    else return false;
 }
