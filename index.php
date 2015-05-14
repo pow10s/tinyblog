@@ -13,3 +13,4 @@ if (isset($_GET['action'])) {
         include('controllers/Search.php');
     }
 }
+

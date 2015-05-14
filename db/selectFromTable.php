@@ -2,4 +2,9 @@
 function selectFromTable($loginUserName, $loginPassword)
 {
     $db = new PDO("mysql:dbname=users;host=localhost", "root", "");
-    $stmt = $db->query('SELECT * FROM users');
+    $stmt = $db->prepare("SELECT * FROM users WHERE UserName=? AND Password=?");
+    $stmt->bindValue(1, $loginUserName, PDO::PARAM_STR);
+    $stmt->bindValue(2, $loginPassword, PDO::PARAM_STR);
+    $stmt->execute();
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
