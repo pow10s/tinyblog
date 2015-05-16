@@ -12,5 +12,8 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == 'search') {
         include('controllers/Search.php');
     }
+    if ($_GET['action']=='createmessage') {
+        include ('controllers/messageController.php');
+    }
 }
 
