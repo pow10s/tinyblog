@@ -8,7 +8,7 @@ else {
         include ('db/selectFromTable.php');
         if(selectFromTable($_POST['loginUserName'], $_POST['loginPassword'])){
             setcookie("user", $_POST['loginUserName']);
-            echo "User";
+            echo "Welcome to the site";
         }
         else echo "User not found";
 
