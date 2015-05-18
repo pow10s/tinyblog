@@ -1,6 +1,6 @@
 <?php
 function averageNumber($numberA, $numberB, $numberC) {
-    if ($numberA = $numberB || $numberB=$numberC || $numberC=$numberA ) {
+    if ($numberA == $numberB || $numberB == $numberC || $numberC == $numberA ) {
         echo "Error";
     }
     elseif(($numberA> $numberB && $numberA <$numberC) || ($numberA<$numberB && $numberA >$numberC)){
