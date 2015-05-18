@@ -1,7 +1,7 @@
 <?php
-//include ('views/loginForm.php');
     if (isset($_POST['enter_btn'])) {
         setcookie("user", $_POST['loginUserName']);
+
         if (!isset($_COOKIE['user'])) {
             include_once 'views/loginForm.php';
             include 'db/selectFromTable.php';
