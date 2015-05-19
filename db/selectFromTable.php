@@ -1,14 +1,14 @@
 <?php
-function selectFromTable($row1, $row2, $loginUserName, $loginPassword)
+function selectFromTable($loginUserName, $loginPassword)
 {
     $db = new PDO("mysql:dbname=users;host=localhost", "root", "");
-    $stmt = $db->query('SELECT * FROM users');
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if ($row[$row1] == $loginUserName && $row[$row2] == $loginPassword) {
-          echo 'Welcome, '.$loginUserName;
-        }
-        else {
-        }
+    $stmt = $db->prepare("SELECT * FROM users WHERE UserName=? AND Password=?");
+    $stmt->bindValue(1, $loginUserName, PDO::PARAM_STR);
+    $stmt->bindValue(2, $loginPassword, PDO::PARAM_STR);
+    $stmt->execute();
+    $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($result)) {
+        return true;
     }
-    return true;
+    else return false;
 }
