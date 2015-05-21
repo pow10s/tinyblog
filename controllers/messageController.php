@@ -5,7 +5,7 @@ if (isset($_COOKIE['user'])) {
         include_once('db/addToTableMessages.php');
         include_once ('db/getUserIdByUserName.php');
         $result = getUserIdByUserName ($_COOKIE['user']);
-        addToTableMessages($_POST['titleName'], $_POST['message'], $result);
+        addToTableMessages($_POST['titleName'], $_POST['message'], $result, $_POST['users_list']);
     }
 }
 else {
