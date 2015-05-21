@@ -44,7 +44,7 @@ function averageArray($a, $b , $c) {
         return $c;
     }
 }
-$a = arrayOne(array(1,2,3));
-$b = arrayTwo(array(1,3,3));
-$c = arrayThree(array(1,2,7));
+$a = arrayOne(array(1,2,1));
+$b = arrayTwo(array(1,2,2));
+$c = arrayThree(array(1,2,3));
 echo averageArray($a,$b,$c);
