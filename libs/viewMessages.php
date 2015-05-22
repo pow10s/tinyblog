@@ -6,6 +6,7 @@ function viewMessage ($user_id_to){
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach($result as $key =>$value){
-        echo "Title: ".$value['Title']."<br>"."Text: ".$value['Text']."<br>";
+        echo ("Title: ".$value['Title']."<br>"."Text: ".$value['Text']."<br>");
     }
+
 }

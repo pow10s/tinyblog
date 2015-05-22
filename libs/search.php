@@ -12,5 +12,3 @@ function searchByUserChunk($chunkOfName, $pathFile) {
     }
     return false;
 }
-
-
