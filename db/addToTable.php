@@ -12,6 +12,4 @@ function addToTable ($email, $userName, $password){
     catch(PDOException $e) {
         echo $e->getMessage();
     }
-
-
 }

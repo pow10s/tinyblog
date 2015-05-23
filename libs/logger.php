@@ -5,7 +5,4 @@ function logs($message, $pathToLog) {
         return true;
     }
         return false;
-
-
 }
-

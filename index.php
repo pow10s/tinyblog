@@ -17,4 +17,3 @@ if (isset($_GET['action'])) {
         include('controllers/viewMessagesController.php');
     }
 }
-

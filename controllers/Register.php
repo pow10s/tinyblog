@@ -7,5 +7,3 @@
             addToTable($_POST['e-mail'], $_POST['username'], $_POST['pass']);
         }
     }
-
-
