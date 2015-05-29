@@ -1,28 +1,29 @@
 <?php
-class Ships {
-    var $v;
-    function value ($length, $width, $height) {
-        $this->v = $length * $width * $height;
-        return $this->v;
+class TypesShip {
+    protected $value;
+    public function getValue () {
+        $this -> value;
+    }
+    public function setValue ($length,$width,$height){
+        $this -> value = $length * $width * $height;
+        return $this->value;
     }
 }
-class Ship extends Ships {
-    var $res;
-    function __valueShip($length, $width, $height){
-       $this->res=parent::value($length, $width, $height);
-        return $this->res;
+class Ship extends TypesShip {
+    public function ValueForShip($length,$width,$height){
+        parent::setValue($length,$width,$height);
+        return $this->value;
     }
 }
-class SpaceShip extends Ships {
-    var $res;
-    function __valueSpaceShip($length, $width, $height){
-        $this->res=parent::value($length, $width, $height);
-        return $this->res;
+class SpaceShip extends TypesShip {
+    public function ValueForSpaceShip($length,$width,$height){
+        parent::setValue($length,$width,$height);
+        return $this->value;
     }
 }
 $object = new Ship();
-echo "This is ship.\nWith value: ". $object ->__valueShip(1,2,3)."<br>";
+echo "Ship is swimming now.Value:\n ". $object ->ValueForShip(2,2,8)."<br>";
 $object = new SpaceShip();
-echo "This is space ship.\nWith value: ".$object ->__valueSpaceShip(2,2,8);
+echo "Space ship is flying now.Value:\n ". $object ->ValueForSpaceShip(3,2,2);
 
 
