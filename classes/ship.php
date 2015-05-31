@@ -1,29 +1,48 @@
 <?php
 class TypesShip {
-    protected $value;
-    public function getValue () {
-        $this -> value;
+    protected $length;
+    protected $width;
+    protected $height;
+    public function getLength () {
+        return $this -> length;
     }
-    public function setValue ($length,$width,$height){
-        $this -> value = $length * $width * $height;
-        return $this->value;
+    public function getWidth () {
+        return $this -> width;
+    }
+    public function getHeight () {
+        return $this -> height;
+    }
+    public function setLength ($length){
+        $this->length = $length;
+    }
+    public function setWidth($width) {
+        $this->width=$width;
+    }
+    public function setHeight($height) {
+        $this->height=$height;
+    }
+
+    public function volumeOfShip (){
+       return $this -> height * $this -> width * $this -> length;
+    }
+    public function __construct($length,$width,$height){
+        $this->height=$height;
+        $this->length=$length;
+        $this->width=$width;
     }
 }
 class Ship extends TypesShip {
-    public function ValueForShip($length,$width,$height){
-        parent::setValue($length,$width,$height);
-        return $this->value;
-    }
+
 }
 class SpaceShip extends TypesShip {
-    public function ValueForSpaceShip($length,$width,$height){
-        parent::setValue($length,$width,$height);
-        return $this->value;
-    }
+
 }
-$object = new Ship();
-echo "Ship is swimming now.Value:\n ". $object ->ValueForShip(2,2,8)."<br>";
-$object = new SpaceShip();
-echo "Space ship is flying now.Value:\n ". $object ->ValueForSpaceShip(3,2,2);
+$object = new Ship(1,2,4);
+//$object->setHeight(1);
+//$object->setLength(2);
+//$object->setWidth(3);
+echo $object->volumeOfShip();
+
+
 
 
