@@ -1,9 +1,9 @@
 <?php
 class UserTable
 {
-    protected $email;
-    protected $userName;
-    protected $password;
+    private $email;
+    private $userName;
+    private $password;
 
     public function getEmail()
     {
@@ -27,7 +27,7 @@ class UserTable
         $this->password = $password;
     }
 
-    function addToTable()
+    public function addToTable()
     {
         try {
             $db = new PDO("mysql:dbname=users;host=localhost", "root", "");

@@ -1,29 +1,34 @@
 <?php
 class MessageTable
 {
-    protected $title;
-    protected $text;
-    protected $user_id_from;
-    protected $user_id_to;
+    private $title;
+    private $text;
+    private $user_id_from;
+    private $user_id_to;
 
     public function getTitle() {
         return $this->title;
     }
+
     public function getText() {
         return $this->text;
     }
+
     public function getUserIdFrom() {
         return $this->user_id_from;
     }
+
     public function getUserIdTo() {
         return $this->user_id_to;
     }
+
     public function __construct($title, $text, $user_id_from, $user_id_to){
         $this->title = $title;
         $this->text = $text;
         $this->user_id_from = $user_id_from;
         $this->user_id_to = $user_id_to;
     }
+
     public function addToTableMessages (){
         try {
             $db = new PDO("mysql:dbname=users;host=localhost", "root", "" );
