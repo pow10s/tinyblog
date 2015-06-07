@@ -1,22 +1,26 @@
 <?php
-function checkMail($email){
+class ValidationFields {
 
-    if (!empty($email) && preg_match("/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$/", $email)){
-        return true;
-    }
-        return false;
-}
-function checkUser($user){
+    static function checkMail($email){
 
-    if (!empty($user) && preg_match("/[a-zA-Z0-9]+$/", $user)) {
-        return true;
-    }
+        if (!empty($email) && preg_match("/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$/", $email)){
+            return true;
+        }
         return false;
-}
-function checkPass($pass){
+    }
+    static function checkUser($user){
 
-    if (!empty($pass) && preg_match("/^[a-z0-9]{6,}+$/i", $pass)) {
-        return true;
-    }
+        if (!empty($user) && preg_match("/[a-zA-Z0-9]+$/", $user)) {
+            return true;
+        }
         return false;
+    }
+    static function checkPass($pass){
+
+        if (!empty($pass) && preg_match("/^[a-z0-9]{6,}+$/i", $pass)) {
+            return true;
+        }
+        return false;
+    }
 }
+
