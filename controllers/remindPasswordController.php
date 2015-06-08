@@ -9,8 +9,9 @@ else {
         if (ValidationFields::checkMail($_POST['remind_Email'])) {
             include_once('../models/passwordByEmail.php');
             $object = new PasswordByEmail($_POST['remind_Email']);
-            if ($object->getUsersPasswordByEmail()){
-                echo "Password: ". $object->getUsersPasswordByEmail();
+            $pass = $object->getUsersPasswordByEmail();
+            if ($pass){
+                echo "Password: ". $pass;
             }
             else echo "User not found";
         } else echo "Incorrect E-mail";

@@ -1,6 +1,6 @@
 <?php
 class Counter {
-   static public function classCounter(){
+   public static function classCounter(){
         static $counter=0;
         $counter++;
         return $counter;
