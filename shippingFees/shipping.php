@@ -22,10 +22,13 @@ class InternationalShipping extends LocalShipping{
     function setInternationalDistance(){
         return $this->internationalDistance;
     }
-    function getInternationalDistance($internationalDistance){
-         $this->internationalDistance=$internationalDistance;
+    function __construct($internationalDistance){
+        parent::__construct(1,2);
+        $this->internationalDistance=$internationalDistance;
     }
-    function interDistance(){
+    function internationalDistance(){
         return $this->numberOfItems * ($this->localDistance * 0.8 + $this->internationalDistance * 1.2);
     }
 }
+$object=new InternationalShipping(3);
+echo $object->internationalDistance();
