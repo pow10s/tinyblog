@@ -1,4 +1,5 @@
 <?php
+include_once('db/DBconnection.php');
 class UserTable
 {
     private $email;
@@ -30,7 +31,7 @@ class UserTable
     public function addToTable()
     {
         try {
-            $db = new PDO("mysql:dbname=users;host=localhost", "root", "");
+            $db= DBconnection::getConnection();
             $stmt = $db->prepare("INSERT INTO users (Email, userName, Password) VALUES(:Email, :userName, :Password)");
             $stmt->bindParam(':Email', $this->email);
             $stmt->bindParam(':userName', $this->userName);
