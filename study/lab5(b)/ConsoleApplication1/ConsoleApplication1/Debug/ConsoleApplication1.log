@@ -1,0 +1,15 @@
+﻿Build started 11.06.2015 2:49:21.
+     1>Project "D:\c++(labs)\lab5(b)\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\visual studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ConsoleApplication1.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ConsoleApplication1.cpp
+         ConsoleApplication1.cpp
+     1>d:\c++(labs)\lab5(b)\consoleapplication1\consoleapplication1\consoleapplication1.cpp(18): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\visual studio\vc\include\stdio.h(283) : see declaration of 'scanf'
+     1>d:\c++(labs)\lab5(b)\consoleapplication1\consoleapplication1\consoleapplication1.cpp(40): error C2057: expected constant expression
+     1>d:\c++(labs)\lab5(b)\consoleapplication1\consoleapplication1\consoleapplication1.cpp(40): error C2466: cannot allocate an array of constant size 0
+     1>d:\c++(labs)\lab5(b)\consoleapplication1\consoleapplication1\consoleapplication1.cpp(40): error C2133: 'a' : unknown size
+     1>Done Building Project "D:\c++(labs)\lab5(b)\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.55

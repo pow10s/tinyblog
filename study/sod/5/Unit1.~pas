@@ -1,0 +1,328 @@
+unit Unit1;
+
+
+{
+       Програма виконує виведення статичного масиву записів в оригіналі та
+       у відсортованому вигляді в компоненту TMemo. Виконує дослідження
+       ефективності послідовного та бінарного пошуків елемента в масиві
+       шляхом порівняння, виводячи дані в таблицю StringGrid.
+
+
+       Автор:  Матіюк Є.І. / 204 група
+}
+
+interface
+
+{$j+}
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Grids;
+
+type
+  TForm1 = class(TForm)
+    Memo1: TMemo;
+    Exit: TButton;
+    GroupBox1: TGroupBox;
+    Sort1: TButton;
+    Output1: TButton;
+    GroupBox2: TGroupBox;
+    Edit2: TEdit;
+    Label2: TLabel;
+    Search1: TButton;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Search2: TButton;
+    StringGrid1: TStringGrid;
+    Label3: TLabel;
+    procedure Output1Click(Sender: TObject);
+    procedure ExitClick(Sender: TObject);
+    procedure Sort1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Search2Click(Sender: TObject);
+    procedure Search1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+
+
+const
+  count = 20; // кількість елементів масиву
+
+type
+  Subject = record  // оголошення типу "запис"
+    KodCycl: byte;
+    NazvCycl: string[80];
+    ObsCyclCred: real;
+    KilkDysc: byte;
+    KursRob: boolean;
+  end;
+
+  stat_array_of_subjects = array [1..count] of Subject; // оголошення стат. масиву записів
+
+const
+  cycl_1: stat_array_of_subjects=                       // ініціалізація масиву як константи
+ ((KodCycl:1; NazvCycl:'Гуманітарні та соціально-економічні дисципліни'; ObsCyclCred:21.5; KilkDysc:14; KursRob:false),
+  (KodCycl:4; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни за переліком'; ObsCyclCred:14.0; KilkDysc:4; KursRob:false),
+  (KodCycl:2; NazvCycl:'Фундаментальні дисципліни'; ObsCyclCred:28.0; KilkDysc:8; KursRob:true),
+  (KodCycl:6; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору студентом'; ObsCyclCred:14.5; KilkDysc:7; KursRob:false),
+  (KodCycl:5; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору ВНЗ'; ObsCyclCred:26.0; KilkDysc:16; KursRob:true),
+  (KodCycl:7; NazvCycl:'Дисципліни за додаткові платні послуги'; ObsCyclCred:6.0; KilkDysc:3; KursRob:false),
+  (KodCycl:8; NazvCycl:'Дисципліни наглядової ради'; ObsCyclCred:2.0; KilkDysc:2; KursRob:false),
+  (KodCycl:11; NazvCycl:'Дисципліни за професійним спрямуванням'; ObsCyclCred:26.5; KilkDysc:16; KursRob:true),
+  (KodCycl:9; NazvCycl:'Дисципліни вільного вибору'; ObsCyclCred:13.0; KilkDysc:5; KursRob:false),
+  (KodCycl:16; NazvCycl:'Спеціальні дисципліни'; ObsCyclCred:25.0; KilkDysc:9; KursRob:true),
+  (KodCycl:14; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору студентом'; ObsCyclCred:14.5; KilkDysc:7; KursRob:false),
+  (KodCycl:20; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору ВНЗ'; ObsCyclCred:26.0; KilkDysc:16; KursRob:true),
+  (KodCycl:18; NazvCycl:'Дисципліни за додаткові платні послуги'; ObsCyclCred:6.0; KilkDysc:3; KursRob:false),
+  (KodCycl:12; NazvCycl:'Дисципліни наглядової ради'; ObsCyclCred:2.0; KilkDysc:2; KursRob:false),
+  (KodCycl:17; NazvCycl:'Гуманітарні та соціально-економічні дисципліни'; ObsCyclCred:21.5; KilkDysc:14; KursRob:false),
+  (KodCycl:15; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни за переліком'; ObsCyclCred:14.0; KilkDysc:4; KursRob:false),
+  (KodCycl:3; NazvCycl:'Фундаментальні дисципліни'; ObsCyclCred:28.0; KilkDysc:8; KursRob:true),
+  (KodCycl:19; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору студентом'; ObsCyclCred:14.5; KilkDysc:7; KursRob:false),
+  (KodCycl:10; NazvCycl:'Вибіркові професійно-орієнтовані дисципліни самостійного вибору ВНЗ'; ObsCyclCred:26.0; KilkDysc:16; KursRob:true),
+  (KodCycl:13; NazvCycl:'Дисципліни за додаткові платні послуги'; ObsCyclCred:6.0; KilkDysc:3; KursRob:false));
+
+
+var
+  Form1: TForm1;
+
+
+implementation
+
+{$R *.dfm}
+
+type
+  string5 = string[5];
+
+var
+  course_work: string5;
+  initial, final, code, index, compar: byte;
+  flag, flag2: boolean;
+  init, fin, c_code, index2, compar2: byte;
+
+
+
+ // -------------------------------------------------------------------BoolToStr
+procedure BoolToStr(input: boolean; var output: string5); // переводить тип даних boolean в string
+begin
+  if input then
+    output:= 'TRUE'
+    else
+      output:= 'FALSE';
+end;
+ // -------------------------------------------------------------------BoolToStr
+
+
+ // -----------------------------------------------------Output_array_into_TMemo
+                                                    // виводить стат. масив в компонент TMemo
+procedure Output_array_into_TMemo(initial, final: byte; ex_array: stat_array_of_subjects);
+  var
+    i: byte;
+begin
+  for i:= initial to final do
+    begin
+      BoolToStr(ex_array[i].KursRob, course_work);
+      Form1.Memo1.Lines.Add(IntToStr(ex_array[i].KodCycl) + '  ' + ex_array[i].NazvCycl + '  ' + FloatToStr(ex_array[i].ObsCyclCred) + '  ' + IntToStr(ex_array[i].KilkDysc) + '  ' + course_work);
+      Form1.Memo1.Lines.Add('');
+    end;
+end;
+ // -----------------------------------------------------Output_array_into_TMemo
+
+
+ // ------------------------------------------------------------------------Sort
+                        // сортування стат. масиву за збільшенням по першому полю
+procedure Sort(input_arr: stat_array_of_subjects; var output_arr: stat_array_of_subjects);
+  var
+    i, j: byte;
+    temp_subject: Subject;
+begin
+  for i:= 1 to count-1 do
+    begin
+      for j:= i+1 to count do
+        begin
+          if input_arr[i].KodCycl > input_arr[j].KodCycl then
+            begin
+              temp_subject:= input_arr[i];
+              input_arr[i]:= input_arr[j];
+              input_arr[j]:= temp_subject;
+            end;
+        end;
+    end;
+  output_arr:= input_arr;
+end;
+ // ------------------------------------------------------------------------Sort
+
+
+ // -----------------------------------------------------------BinarySearchArray
+            // виконує бінарний пошук елемента в масиві записів по першому полю
+function BinarySearchArray(input_arr: stat_array_of_subjects;
+                         left, right, cycle_code: byte;
+                         var index, compar_quant: byte): boolean;
+  var
+    middle: integer;
+  begin
+    BinarySearchArray:= false;
+    compar_quant:= 0;
+    while left <= right do
+      begin
+        Inc(compar_quant);
+        middle:= (left + right) div 2;
+        if input_arr[middle].KodCycl < cycle_code then
+          begin
+            left:= middle + 1;
+          end
+          else
+            if input_arr[middle].KodCycl > cycle_code then
+              begin
+                right:= middle - 1;
+              end
+              else
+                begin
+                  BinarySearchArray:= true;
+                  index:= middle;
+                  Exit;
+                end;
+      end;
+  end;
+ // -----------------------------------------------------------BinarySearchArray
+
+
+ // -------------------------------------------------------ConsistentSearchArray
+         // виконує послідовний пошук елемента в масиві записів по першому полю
+function ConsistentSearchArray(input_arr: stat_array_of_subjects;
+                               initial, final, cycle_code: byte;
+                               var index, compar_quant: byte): boolean;
+  var
+    i: byte;
+  begin
+    ConsistentSearchArray:= false;
+    compar_quant:= 0;
+    for i:= initial to final do
+      begin
+        Inc(compar_quant);
+        if input_arr[i].KodCycl = cycle_code then
+          begin
+            ConsistentSearchArray:= true;
+            index:= i;
+            Exit;
+          end;
+      end;
+  end;
+ // -------------------------------------------------------ConsistentSearchArray
+
+{
+procedure Output_ptr_arr();
+  begin
+
+  end;
+ }
+
+ // --------------------------------------блок обробників подій різних елементів
+procedure TForm1.Output1Click(Sender: TObject);
+var
+  init: byte;
+begin
+  Form1.Memo1.Lines.Add('Початковий масив:');
+  Form1.Memo1.Lines.Add('');
+  Form1.Memo1.Lines.Add('');
+
+  init:= 1;
+
+  Output_array_into_TMemo(init, count, cycl_1);
+
+  Form1.Memo1.Lines.Add('');
+  Form1.Memo1.Lines.Add('');
+  Form1.Output1.Enabled:= false;
+  Form1.Sort1.SetFocus;
+end;
+
+procedure TForm1.Sort1Click(Sender: TObject);
+begin
+  Form1.Memo1.Lines.Add('Відсортований масив:');
+  Form1.Memo1.Lines.Add('');
+  Form1.Memo1.Lines.Add('');
+
+  Sort(cycl_1, cycl_1);
+
+  Output_array_into_TMemo(1, count, cycl_1);
+
+  Form1.Memo1.Lines.Add('');
+  Form1.Sort1.Enabled:= false;
+end;
+
+ // -----------------------------------------------------послідовний пошук
+procedure TForm1.Search1Click(Sender: TObject);
+var
+  row_count: integer;
+begin
+  init:= 1;
+  fin:= length(cycl_1);
+  c_code:= StrToInt(Form1.Edit2.Text);
+  flag2:= ConsistentSearchArray(cycl_1, init, fin, c_code, index2, compar2);
+  row_count:= StringGrid1.RowCount;
+
+  if flag2 then
+    begin
+      StringGrid1.Cells[0,row_count-1]:= 'послідовний';
+      StringGrid1.Cells[1,row_count-1]:= IntToStr(c_code);
+      StringGrid1.Cells[2,row_count-1]:= IntToStr(index2);
+      StringGrid1.Cells[3,row_count-1]:= IntToStr(compar2);
+      StringGrid1.RowCount:= StringGrid1.RowCount + 1;
+    end
+    else
+      begin
+        ShowMessage('Елемент ' + IntToStr(c_code) + ' не знайдений.');
+      end;
+end;
+ // -----------------------------------------------------послідовний пошук
+
+ // -----------------------------------------------------бінарний пошук
+procedure TForm1.Search2Click(Sender: TObject);
+var
+  row_count: integer;
+begin
+  initial:= 1;
+  final:= length(cycl_1);
+  code:= StrToInt(Form1.Edit1.Text);
+  flag:= BinarySearchArray(cycl_1, initial, final, code, index, compar);
+  row_count:= StringGrid1.RowCount;
+
+  if flag then
+    begin
+      StringGrid1.Cells[0,row_count-1]:= 'бінарний';
+      StringGrid1.Cells[1,row_count-1]:= IntToStr(code);
+      StringGrid1.Cells[2,row_count-1]:= IntToStr(index);
+      StringGrid1.Cells[3,row_count-1]:= IntToStr(compar);
+      StringGrid1.RowCount:= StringGrid1.RowCount + 1;
+    end
+    else
+      begin
+        ShowMessage('Елемент ' + IntToStr(code) + ' не знайдений.');
+      end;
+end;
+ // -----------------------------------------------------бінарний пошук
+
+
+
+procedure TForm1.ExitClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  StringGrid1.Cells[0,0]:= 'Пошук';
+  StringGrid1.Cells[1,0]:= 'Елемент (код циклу)';
+  StringGrid1.Cells[2,0]:= 'Порядковий номер';
+  StringGrid1.Cells[3,0]:= 'Кількість порівнянь';
+  Form1.Output1.SetFocus;
+end;
+ // --------------------------------------блок обробників подій різних елементів
+
+end.
+
