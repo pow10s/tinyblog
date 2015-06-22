@@ -1,5 +1,4 @@
 <?php
-include_once('db/DBconnection.php');
 try {
     $db= DBconnection::getConnection();
     $sql ="CREATE table messages(

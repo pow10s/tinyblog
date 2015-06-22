@@ -1,5 +1,4 @@
 <?php
-include_once ('db/DBconnection.php');
 function selectFromTable($loginUserName, $loginPassword)
 {
     $db= DBconnection::getConnection();

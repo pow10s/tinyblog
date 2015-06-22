@@ -1,5 +1,4 @@
 <?php
-include_once('db/DBconnection');
 function viewUserNameFrom ($userName)
 {
     $db= DBconnection::getConnection();

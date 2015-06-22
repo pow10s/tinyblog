@@ -1,5 +1,4 @@
 <?php
-include_once('db/DBconnection.php');
 class MessageTable
 {
     private $title;
