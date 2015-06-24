@@ -12,13 +12,6 @@
             width:190px;
             height: 300px;
         }
-        #content {
-            width: 525px;
-            height: 300px;
-            position: absolute;
-            left:190px;
-            top:100px;
-        }
         body {
             margin:0px;
         }
@@ -46,5 +39,3 @@
     </tr>
     </table>
 </div>
-<div id="content">
-    </div>
