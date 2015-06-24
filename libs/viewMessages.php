@@ -1,5 +1,5 @@
 <?php
-include_once('db/DBconnection');
+include_once('db/DBconnection.php');
 function viewMessage ($user_id_to){
     $db= DBconnection::getConnection();
     $stmt = $db->prepare("SELECT Title, Text FROM messages WHERE user_id_to = :user_id_to");
