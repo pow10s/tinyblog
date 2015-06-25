@@ -1,41 +1,25 @@
 <html>
 <head>
-    <style type="text/css">
-        a {
-            text-decoration: none;
-        }
-        #header {
-            width:715px;
-            height: 100px;
-        }
-        #menu {
-            width:190px;
-            height: 300px;
-        }
-        body {
-            margin:0px;
-        }
-        </style>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
     </head>
 <body>
 <div id="header"><h1 align="center">Tiny blog</h1></div>
 <div id="menu">
-<table>
-    <caption>Messages</caption>
-    <tr>
-    <td><a href="http://localhost/projs/tinyblog/index.php?action=createmessage">Create message</a></td>
-    </tr>
-    <tr>
-        <td><a href="http://localhost/projs/tinyblog/index.php?action=viewmessages">View messages</a></td>
-    </tr>
-    </table>
-<table>
-    <caption>Users</caption>
-    <tr>
-    <td><a href="http://localhost/projs/tinyblog/index.php?action=register">Register</a></td>
-    </tr>
-    <tr>
-        <td><a href="http://localhost/projs/tinyblog/index.php?action=login">Login</a></td>
-    </tr>
-    </table>
+<ul class="dropdown">
+    <li class="dropdown-top">
+    <a class="dropdown-top" href="/">Messages</a>
+    <ul class="dropdown-inside">
+    <li><a href="<?php echo BASE_URL ?>?action=createmessage">Create message</a></li>
+    <li><a href="<?php echo BASE_URL ?>?action=viewmessages">View messagase</a></li>
+    </ul>
+    </li>
+
+    <li class="dropdown-top">
+    <a class="dropdown-top" href="/">Users</a>
+    <ul class="dropdown-inside">
+        <li><a href="<?php echo BASE_URL ?>?action=login">Login</a></li>
+        <li><a href="<?php echo BASE_URL ?>?action=register">Register</a></li>
+        </ul>
+    </li>
+    </ul>
 </div>
