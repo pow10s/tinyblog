@@ -31,7 +31,7 @@ class MessageTable
 
     public function addToTableMessages (){
         try {
-            $db = new PDO("mysql:dbname=users;host=localhost", "root", "" );
+            $db = DBconnection::getConnection();
             $stmt = $db->prepare("INSERT INTO messages (Title, Text, user_id_from, user_id_to) VALUES(:Title, :Text,:user_id_from, :user_id_to)");
             $stmt->bindParam(':Title', $this->title);
             $stmt->bindParam(':Text', $this->text);

@@ -15,7 +15,7 @@ class PasswordByEmail
 
     public function getUsersPasswordByEmail()
     {
-        $db = new PDO("mysql:dbname=users;host=localhost", "root", "");
+        $db= DBconnection::getConnection();
         $stmt = $db->prepare("SELECT Password FROM users WHERE Email=? ");
         $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
         $stmt->execute();

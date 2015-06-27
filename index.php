@@ -1,5 +1,7 @@
 <?php
 include ('config.php');
+require_once('db/DBconnection.php');
+include_once('views/menu.php');
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'register') {
         include('controllers/Register.php');
