@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include ('config.php');
 require_once('db/DBconnection.php');
-include_once('views/menu.php');
+require_once('views/menu.php');
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'register') {
         include('controllers/Register.php');
