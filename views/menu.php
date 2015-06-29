@@ -1,3 +1,4 @@
+<?php echo BASE_URL?>
 <html>
 <head>
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
@@ -10,8 +11,8 @@
     <a class="dropdown-top">Messages</a>
     <ul class="dropdown-inside">
         <?php if(isset($_COOKIE['user'])):?>
-    <li><a href="<?php echo BASE_URL ?>/projs/tinyblog/index.php?action=createmessage">Create message</a></li>
-    <li><a href="<?php echo BASE_URL ?>/projs/tinyblog/index.php?action=viewmessages">View messagase</a></li>
+    <li><a href="<?php echo BASE_URL ?>index.php?action=createmessage">Create message</a></li>
+    <li><a href="<?php echo BASE_URL ?>index.php?action=viewmessages">View messagase</a></li>
         <?php endif; ?>
     </ul>
     </li>
@@ -20,8 +21,8 @@
     <a class="dropdown-top" >Users</a>
     <ul class="dropdown-inside">
         <?php if(!isset($_COOKIE['user'])):?>
-        <li><a href="<?php echo BASE_URL ?>/projs/tinyblog/index.php?action=login">Login</a></li>
-        <li><a href="<?php echo BASE_URL ?>/projs/tinyblog/index.php?action=register">Register</a></li>
+        <li><a href="<?php echo BASE_URL ?>index.php?action=login">Login</a></li>
+        <li><a href="<?php echo BASE_URL ?>index.php?action=register">Register</a></li>
         <?php endif; ?>
         </ul>
     </li>
