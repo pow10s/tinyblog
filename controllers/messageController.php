@@ -7,7 +7,7 @@ if (isset($_COOKIE['user'])) {
                 include_once('models/messagesTable.php');
                 include_once('db/getUserIdByUserName.php');
                 $result = getUserIdByUserName($_COOKIE['user']);
-                if ($result != $_POST['users_list']) {
+                if ($result != $_POST['users_list'] && $_COOKIE['user'] != $result) {
                     $object = new MessageTable($_POST['titleName'], $_POST['message'], $result, $_POST['users_list']);
                     $object ->addToTableMessages();
                 } else {

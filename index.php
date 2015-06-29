@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 include ('config.php');
 require_once('db/DBconnection.php');
 require_once('views/menu.php');
+include('controllers/logout.php');
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'register') {
         include('controllers/Register.php');

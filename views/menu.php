@@ -25,5 +25,10 @@
         <?php endif; ?>
         </ul>
     </li>
+    <li class="dropdown-top">
+        <form method="post">
+        <p><input type="submit" name="logout_btn" value="Logout"></p>
+            </form>
+    </li>
     </ul>
 </div>
