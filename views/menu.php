@@ -1,3 +1,4 @@
+<?php echo BASE_URL?>
 <html>
 <head>
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
