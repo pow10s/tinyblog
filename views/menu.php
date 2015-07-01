@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
     </head>
 <body>
-<div id="header"><h1 align="center">Tiny blog</h1></div>
+<div id="header">
 <div id="menu">
 <ul class="dropdown">
     <?php if(isset($_COOKIE['user'])):?>
@@ -36,4 +36,5 @@
         <?php endif; ?>
     </li>
     </ul>
+</div>
 </div>
