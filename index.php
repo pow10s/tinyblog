@@ -1,5 +1,9 @@
 <?php
 include ('config.php');
+require_once(ROOT.'../libs/Router.php');
+require_once('libs/Router.php');
+$router = new Router();
+$router->getURI();
 require_once('db/DBconnection.php');
 require_once('views/menu.php');
 include('controllers/logout.php');

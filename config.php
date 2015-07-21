@@ -5,3 +5,4 @@ define("DB_NAME","users");
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS","");
+define('ROOT', dirname(__FILE__));
