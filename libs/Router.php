@@ -10,11 +10,13 @@ class Router
     public function run(){
         $url = $this->getURI();
         $url = explode('/', $url);
-        $controller = ucfirst(array_shift($url).'Controller');
-        $action = 'action' . ucfirst(array_shift($url));
-        $controllerFile = ROOT.'../tinyblog/controllers'.$controller.'.php';
+        $controller = ucfirst(array_shift($url));
+        $action = ucfirst(array_shift($url));
+        $controllerFile = ROOT . '/controllers/' . $controller . '.php';
         if (file_exists($controllerFile)){
             include($controllerFile);
         }
+        else echo $controllerFile;
+
     }
 }
