@@ -13,6 +13,7 @@ class Router
         $controller = ucfirst(array_shift($url));
         $action = ucfirst(array_shift($url));
         $controllerFile = ROOT . '/controllers/' . $controller . '.php';
+
         if (file_exists($controllerFile)){
             include($controllerFile);
         }
