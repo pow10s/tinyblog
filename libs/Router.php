@@ -12,12 +12,11 @@ class Router
         $url = explode('/', $url);
         $controller = ucfirst(array_shift($url));
         $action = ucfirst(array_shift($url));
-        $controllerFile = ROOT . '/controllers/' . $controller . '.php';
-
+        $controller = ucfirst(array_shift($url));
+        $controllerFile = ROOT .'/controllers/' . $controller .'Controller'. '.php';
         if (file_exists($controllerFile)){
             include($controllerFile);
         }
-        else echo $controllerFile;
-
+        else echo 'Error 404';
     }
 }
