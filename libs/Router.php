@@ -13,10 +13,18 @@ class Router
         $controller = ucfirst(array_shift($url));
         $action = ucfirst(array_shift($url));
         $controller = ucfirst(array_shift($url));
-        $controllerFile = ROOT .'/controllers/' . $controller .'Controller'. '.php';
+        $action = ucfirst(array_shift($url));
+        $segments = $url;
+        $controllerFile = ROOT .'/controllers/' . $controller .'Controller' . '.php'.'/'.$action;
+        echo $controllerFile;
         if (file_exists($controllerFile)){
             include($controllerFile);
         }
-        else echo 'Error 404';
+        if (!is_callable(array($controller,$action))){
+            echo 'Not Found';
+        }
+         call_user_func_array($controller,$action);
+
+
     }
 }
