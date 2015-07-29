@@ -1,5 +1,5 @@
 <?php
-class Login
+class LoginController
 {
     public static function loginChecker()
     {
@@ -18,3 +18,4 @@ class Login
         }
     }
 }
+LoginController::loginChecker();

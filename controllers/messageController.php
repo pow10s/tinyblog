@@ -1,5 +1,5 @@
 <?php
-class Message
+class MessageController
 {
     public static function messageCheck()
     {
@@ -30,4 +30,4 @@ class Message
         }
     }
 }
-s
+MessageController::messageCheck();

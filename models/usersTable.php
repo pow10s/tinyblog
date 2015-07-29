@@ -29,6 +29,7 @@ class UserTable
 
     public function addToTable()
     {
+        include_once('db/DBconnection.php');
         try {
             $db= DBconnection::getConnection();
             $stmt = $db->prepare("INSERT INTO users (Email, userName, Password) VALUES(:Email, :userName, :Password)");

@@ -1,6 +1,7 @@
 <?php
 function selectFromTable($loginUserName, $loginPassword)
 {
+    include_once('db/DBconnection.php');
     $db= DBconnection::getConnection();
     $stmt = $db->prepare("SELECT * FROM users WHERE UserName=? AND Password=?");
     $stmt->bindValue(1, $loginUserName, PDO::PARAM_STR);
