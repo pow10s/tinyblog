@@ -1,6 +1,6 @@
 <?php
 class DummyController {
-    public function actionSayHello(){
-        echo 'Hello';
+    public static function actionSayHello(){
+        echo "<br>".'Hello';
     }
 }

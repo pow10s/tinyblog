@@ -10,11 +10,10 @@ class Router
     public function run(){
         $url = $this->getURI();
         $url = explode('/', $url);
-        print_r($url);
-        $controller = ucfirst(array_pop($url)) . 'Controller';
+        $controller = ucfirst(array_shift($url)) . 'Controller';
         $action ='action' . ucfirst(array_pop($url));
+        $param=$url;
         $controllerFile = ROOT .'/controllers/' . $controller . '.php';
-        echo $controllerFile;
         if (file_exists($controllerFile)){
             include($controllerFile);
         call_user_func(array($controller, $action));
