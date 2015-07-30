@@ -1,7 +1,7 @@
 <?php
 class LoginController
 {
-    public static function loginChecker()
+    public static function actionLogin()
     {
         if (isset($_COOKIE['user'])) {
             echo "You are logged";
@@ -18,4 +18,3 @@ class LoginController
         }
     }
 }
-LoginController::loginChecker();

@@ -1,7 +1,7 @@
 <?php
 class ViewMessagesController
 {
-    public static function viewMessagesChecker ()
+    public static function actionViewMEssages ()
     {
         if (isset($_COOKIE['user'])) {
             include_once('db/getUserIdByUserName.php');
@@ -19,4 +19,3 @@ class ViewMessagesController
         }
     }
 }
-ViewMessagesController::viewMessagesChecker();

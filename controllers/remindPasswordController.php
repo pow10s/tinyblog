@@ -1,7 +1,7 @@
 <?php
 class RemindPasswordController
 {
-    public static function remindChecker()
+    public static function actionRemind()
     {
         if (isset($_COOKIE['user'])) {
             echo "You are logged";
@@ -21,4 +21,3 @@ class RemindPasswordController
         }
     }
 }
-RemindPasswordController::remindChecker();

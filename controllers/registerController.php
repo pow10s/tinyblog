@@ -1,7 +1,7 @@
 <?php
 class RegisterController
 {
-    public static function registerChecker()
+    public static function actionRegister()
     {
         include('views/registration.php');
         include('libs/validation.php');
@@ -16,4 +16,3 @@ class RegisterController
         }
     }
 }
-RegisterController::registerChecker();

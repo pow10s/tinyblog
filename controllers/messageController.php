@@ -1,7 +1,7 @@
 <?php
 class MessageController
 {
-    public static function messageCheck()
+    public static function actionMessage()
     {
         if (isset($_COOKIE['user'])) {
             include_once('views/message.php');
@@ -30,4 +30,3 @@ class MessageController
         }
     }
 }
-MessageController::messageCheck();
