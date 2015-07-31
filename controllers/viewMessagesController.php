@@ -1,7 +1,7 @@
 <?php
 class ViewMessagesController
 {
-    public static function actionViewMEssages ()
+    public function actionViewMessages ()
     {
         if (isset($_COOKIE['user'])) {
             include_once('db/getUserIdByUserName.php');
@@ -15,7 +15,7 @@ class ViewMessagesController
             echo "</table>";
         } else {
             include_once('libs/siteutils.php');
-            Redirect('http://localhost/projs/tinyblog/index.php?action=login', false);
+            Redirect('http://tinyblog.dev/login/login', false);
         }
     }
 }

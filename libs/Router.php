@@ -16,7 +16,13 @@ class Router
         $controllerFile = ROOT .'/controllers/' . $controller . '.php';
         if (file_exists($controllerFile)){
             include($controllerFile);
-        call_user_func(array($controller, $action));
+            if(!is_callable($controller, $action)){
+                echo 'Error 404';
+            }
+            else {
+                $object = new $controller;
+                $object -> $action();
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 class LogoutController
 {
-    public static function actionLogout()
+    public function actionLogout()
     {
         if (isset($_COOKIE['user']) && isset($_POST['logout_btn'])) {
             unset($_COOKIE['user']);

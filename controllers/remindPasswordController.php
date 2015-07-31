@@ -1,16 +1,16 @@
 <?php
 class RemindPasswordController
 {
-    public static function actionRemind()
+    public function actionRemindPassword()
     {
         if (isset($_COOKIE['user'])) {
             echo "You are logged";
         } else {
-            include_once '../views/remindPassword.php';
+            include_once 'views/remindPassword.php';
             if (isset($_POST['remind_btn'])) {
-                include_once('../libs/validation.php');
+                include_once('libs/validation.php');
                 if (ValidationFields::checkMail($_POST['remind_Email'])) {
-                    include_once('../models/passwordByEmail.php');
+                    include_once('models/passwordByEmail.php');
                     $object = new PasswordByEmail($_POST['remind_Email']);
                     $pass = $object->getUsersPasswordByEmail();
                     if ($pass) {

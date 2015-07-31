@@ -11,8 +11,10 @@
     <li class="dropdown-top">
     <a class="dropdown-top">Messages</a>
     <ul class="dropdown-inside">
-    <li><a href="<?php echo BASE_URL ?>index.php?action=createmessage">Create message</a></li>
-    <li><a href="<?php echo BASE_URL ?>index.php?action=viewmessages">View messagase</a></li>
+
+    <li><a href="http://tinyblog.dev/message/message">Create message</a></li>
+    <li><a href="http://tinyblog.dev/viewMessages/viewMessages">View messagase</a></li>
+
     </ul>
     </li>
     <?php endif; ?>
@@ -22,17 +24,15 @@
     <a class="dropdown-top" >Users</a>
     <ul class="dropdown-inside">
 
-        <li><a href="<?php echo BASE_URL ?>index.php?action=login">Login</a></li>
-        <li><a href="<?php echo BASE_URL ?>index.php?action=register">Register</a></li>
+        <li><a href="http://tinyblog.dev/login/login">Login</a></li>
+        <li><a href="http://tinyblog.dev/register/register">Register</a></li>
 
         </ul>
         <?php endif; ?>
     </li>
     <li class="dropdown-top">
         <?php if(isset($_COOKIE['user'])):?>
-        <form method="post">
-        <p><input type="submit" name="logout_btn" value="Logout"></p>
-            </form>
+            <p><a href="http://tinyblog.dev/logout/logout">Logout</a></p>
         <?php endif; ?>
     </li>
     </ul>

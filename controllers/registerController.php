@@ -1,7 +1,7 @@
 <?php
 class RegisterController
 {
-    public static function actionRegister()
+    public function actionRegister()
     {
         include('views/registration.php');
         include('libs/validation.php');

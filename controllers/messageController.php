@@ -1,7 +1,7 @@
 <?php
 class MessageController
 {
-    public static function actionMessage()
+    public function actionMessage()
     {
         if (isset($_COOKIE['user'])) {
             include_once('views/message.php');
@@ -26,7 +26,7 @@ class MessageController
             }
         } else {
             include_once('libs/siteutils.php');
-            Redirect('http://localhost/projs/tinyblog/index.php?action=login', false);
+            Redirect('http://tinyblog.dev/login/login', false);
         }
     }
 }

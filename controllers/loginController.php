@@ -1,7 +1,7 @@
 <?php
 class LoginController
 {
-    public static function actionLogin()
+    public function actionLogin()
     {
         if (isset($_COOKIE['user'])) {
             echo "You are logged";
