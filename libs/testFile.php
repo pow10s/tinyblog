@@ -1,5 +1,5 @@
 <?php
-class TestFileLibs{
+class TestFile{
     public function hello(){
         echo 'HELLO';
     }
