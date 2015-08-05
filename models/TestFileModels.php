@@ -4,3 +4,5 @@ class TestFileModels{
         echo 'HELLO';
     }
 }
+$obj= new TestFileModels();
+$obj->hello();
