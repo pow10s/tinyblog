@@ -10,3 +10,5 @@ class Test
         echo 'It works!';
     }
 }
+$obj = new Test();
+$obj->testMethod();

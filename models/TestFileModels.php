@@ -1,7 +1,8 @@
 <?php
+namespace models;
 class TestFileModels{
     public function hello(){
-        echo 'HELLO';
+        echo 'HELLO2222';
     }
 }
 $obj= new TestFileModels();
