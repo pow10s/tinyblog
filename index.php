@@ -6,7 +6,7 @@ require_once('views/menu.php');
 require_once('libs/Cookie.php');
 require_once 'Autoloader/autoload.php';
 
-use Autoloader\Autoload\Autoload;
+use Autoloader\Autoload;
 use libs\TestFile;
 use models\TestFileModels;
 

@@ -1,11 +1,10 @@
 <?php
-namespace Autoloader\Autoload;
+namespace Autoloader;
 
 class Autoload {
     private static $loadedFilename;
 
     public static function loadClass($className) {
-        include_once('config.php');
         $pathParts = explode('_', $className);
         self::$loadedFilename = ROOT.'/'.implode(DIRECTORY_SEPARATOR, $pathParts) . '.php';
         require_once(self::$loadedFilename);
