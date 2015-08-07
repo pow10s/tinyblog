@@ -6,3 +6,4 @@ define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS","");
 define('ROOT', dirname(__FILE__));
+define('VIEWS_BASEDIR', dirname(__FILE__).'/views/');
