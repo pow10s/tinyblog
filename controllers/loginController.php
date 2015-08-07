@@ -19,19 +19,22 @@ class LoginController
             }
         }
     }
-    public static function createMass(){
-        $users = array('users'=> array (array('name'=>'petya','age'=>'13','adress'=>'pops.com'),
-            array('name'=>'dima','age'=>'18','adress'=>'polt.com'),
-            array('name'=>'vasya','age'=>'51','adress'=>'niko.com'),
-            array('name'=>'yurka','age'=>'23','adress'=>'prosp.com'),
-            array('name'=>'ignat','age'=>'18','adress'=>'sht.com') )
-        );
-        return $users;
+    public function getArray(){
+        $users = array('users'=>array('name'=>'petya','age'=>'13','adress'=>'pops.com'),
+                                 array('name'=>'dima','age'=>'18','adress'=>'polt.com'),
+                                 array('name'=>'vasya','age'=>'51','adress'=>'niko.com'),
+                                 array('name'=>'yurka','age'=>'23','adress'=>'prosp.com'),
+                                 array('name'=>'ignat','age'=>'18','adress'=>'sht.com')
+                );
+            return $users;
+
     }
+
     public function actionViewAllUsers(){
+
         $view = new View();
-        $users = $this->createMass();
-        $view->render('viewUsers',array('users' => $users));
+        $users = $this->getArray();
+        $view->renderPartial('viewUsers',array('users' => $users));
     }
 }
 
