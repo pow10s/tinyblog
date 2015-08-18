@@ -19,7 +19,7 @@ class LoginController
             }
         }
     }
-    public function getArray(){
+    private function getArray(){
         $users = array('users'=>array('name'=>'petya','age'=>'13','adress'=>'pops.com'),
                                  array('name'=>'dima','age'=>'18','adress'=>'polt.com'),
                                  array('name'=>'vasya','age'=>'51','adress'=>'niko.com'),
