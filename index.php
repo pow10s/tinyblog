@@ -3,6 +3,7 @@ require ('config.php');
 require(ROOT.'/libs/Router.php');
 require('libs/view.php');
 require('libs/DBConnector.php');
+require('libs/DBModel.php');
 require('libs/Cookie.php');
 require 'Autoloader/autoload.php';
 
