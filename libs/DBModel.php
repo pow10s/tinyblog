@@ -5,16 +5,16 @@ class DBModel{
         $this->connection = DBConnector::getConnection();
     }
     public  function add($insName,$insData) {
-        $sql = "INSERT into $insName (`Email`,`UserName`, `Password`) VALUE (:Email , :UserName, :Password)";
+
+        $keys =" (`".implode("`, `",array_keys($insData))."`)";
+        $values= " VALUES ('".implode("', '", $insData)."') ";
         $db = $this->connection;
+        $sql = "INSERT INTO `$insName`". "$keys"."$values";
         $stmt = $db->prepare($sql);
-            $stmt->bindValue(':Email', $insData['Email']);
-            $stmt->bindValue(':UserName', $insData['UserName']);
-            $stmt->bindValue(':Password', $insData['Password']);
-            $stmt->execute();
+        $stmt->execute();
     }
 
 }
 $dbModel = new DBModel();
-$dbModel->add('users', array('Email'=>'dimka@mail.ru', 'UserName'=>'dimas', 'Password'=>'dasdas'));
+$dbModel->add('users', array('UserName'=>'dimas', 'Password'=>'dasdas'));
 
