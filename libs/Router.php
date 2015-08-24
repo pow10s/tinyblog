@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 class Router
 {
     public function getURI() {

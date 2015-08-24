@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 class View{
     function fetchPartial($template,$params = array()){
         extract($params);

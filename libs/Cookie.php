@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 class Cookie{
     private $cookie_name;
     private $cookie_value;

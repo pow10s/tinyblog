@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 include_once('db/DBconnection.php');
 function viewMessage ($user_id_to){
     $db= DBconnection::getConnection();

@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 function Redirect($urlTo, $permanent = false)
 {
     if (headers_sent() === false)
