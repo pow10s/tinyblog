@@ -1,5 +1,6 @@
 <?php
 namespace libs;
+include('../libs/DBConnector.php');
 class DBModel{
     protected $connection;
     public function __construct(){
@@ -14,11 +15,9 @@ class DBModel{
         }
         $values[] ='(' . implode(',', $val) . ')';
         $db = $this->connection;
-        $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
+        $sql = "INSERT INTO `$insName`".$keys."VALUES".$name = implode(',', $values);
         $stmt = $db->prepare($sql);
-        foreach($insData as $key => $name){
-            $stmt->bindValue('$key', $name);
-        }
+        $stmt -> bindValue('$name', $keys);
         $stmt->execute();
     }
 

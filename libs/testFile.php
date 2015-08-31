@@ -5,5 +5,3 @@ class TestFile{
         echo 'HELLO';
     }
 }
-$obj = new TestFile();
-$obj->hello();
