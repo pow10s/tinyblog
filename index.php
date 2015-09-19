@@ -1,11 +1,11 @@
 <?php
 require('config.php');
-require('libs/view.php');
-require('libs/DBConnector.php');
-require('libs/Cookie.php');
 require('Autoloader/autoload.php');
 Autoloader\Autoload::autoloadRegister();
+$view = new libs\View();
 $router = new libs\Router();
 $router->run();
+$cookie = new libs\Cookie();
+
 $dbModel = new libs\DBModel();
-$dbModel->add('users', array('UserName'=>'dimas', 'Password'=>'dasdas'));
+$dbModel->add('users', array('UserName'=>'dimass', 'Password'=>'dasdfccas'));

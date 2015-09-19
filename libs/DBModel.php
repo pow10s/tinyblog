@@ -1,6 +1,5 @@
 <?php
-namespace libs;
-include('../libs/DBConnector.php');
+require('../libs/DBConnector.php');
 class DBModel{
     protected $connection;
     public function __construct(){
@@ -15,10 +14,13 @@ class DBModel{
         }
         $values[] ='(' . implode(',', $val) . ')';
         $db = $this->connection;
-        $sql = "INSERT INTO `$insName`".$keys."VALUES".$name = implode(',', $values);
-        $stmt = $db->prepare($sql);
-        $stmt -> bindValue('$name', $keys);
+        $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
+        $stmt=$db->prepare($sql);
+        $stmt->bindValue(':UserName',$insData['UserName']);
+        $stmt->bindValue(':Password',$insData['Password']);
         $stmt->execute();
     }
 
 }
+$dbModel = new DBModel();
+$dbModel->add('users', array('UserName'=>'dimadasdasdss', 'Password'=>'dasdfgdgfdgfccas'));
