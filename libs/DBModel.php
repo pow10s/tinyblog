@@ -1,45 +1,52 @@
 <?php
+namespace libs;
+
 require('../libs/DBConnector.php');
-class DBModel{
+class DBModel
+{
     protected $connection;
+
     public function __construct(){
         $this->connection = DBConnector::getConnection();
     }
 
-    public  function add($insName,$insData) {
+    public  function add($insName,$insData)
+    {
         $values = array();
         $keys =" (`".implode("`, `",array_keys($insData))."`)";
         foreach($insData as $key => $value){
             $val[] = ':' . $key ;
         }
         $values[] ='(' . implode(',', $val) . ')';
-        $db = $this->connection;
         $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
-        $stmt=$db->prepare($sql);
+        $stmt = $this->connection->prepare($sql);
 
         foreach($insData as $keyd => $valued){
             $stmt->bindParam(':'. $keyd, $valued);
         }
         $stmt->execute();
     }
-    public function select($tableName,$tableData, $amtFields = 5 ){
+
+    public function select($tableName,$tableData, $amtFields = 5 )
+    {
         $values = implode(',', $tableData);
-        $db = $this->connection;
-        $sql = "SELECT $values FROM `$tableName` BETWEEN 1 AND $amtFields";
-        $stmt = $db->prepare($sql);
+        $sql = "SELECT $values FROM `$tableName` LIMIT $amtFields";
+        $stmt = $this->connection->prepare($sql);
         $stmt->execute();
     }
-    public function delete($tableName, $fields){
+
+    public function delete($tableName, $fields, $amtFields = 5)
+    {
         $values = implode(',', $fields);
-        $db = $this->connection;
-        $sql = "DELETE FROM `$tableName` ORDER BY $values";
-        $stmt=$db->prepare($sql);
-        $stmt->bindParam(':'.$values, $values);
+        $sql = "DELETE FROM `$tableName` ORDER BY $values LIMIT $amtFields";
+        $stmt = $this->connection->prepare($sql);
+
+        foreach($fields as $key=>$val){
+            $stmt->bindParam(':'.$val, $val);
+        }
         $stmt->execute();
-
     }
-
 }
 $dbModel = new DBModel();
 //$dbModel->add('users', array('UserName'=>'Her', 'Password'=>'Gitler'));
-$dbModel->delete('users', array('UserName'));
+$dbModel->delete('users', array('UserName'),8);
