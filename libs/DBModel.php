@@ -1,7 +1,6 @@
 <?php
 namespace libs;
 
-require('../libs/DBConnector.php');
 class DBModel
 {
     protected $connection;
@@ -14,9 +13,11 @@ class DBModel
     {
         $values = array();
         $keys =" (`".implode("`, `",array_keys($insData))."`)";
+
         foreach($insData as $key => $value){
             $val[] = ':' . $key ;
         }
+
         $values[] ='(' . implode(',', $val) . ')';
         $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
         $stmt = $this->connection->prepare($sql);
@@ -24,6 +25,7 @@ class DBModel
         foreach($insData as $keyd => $valued){
             $stmt->bindParam(':'. $keyd, $valued);
         }
+
         $stmt->execute();
     }
 
@@ -31,8 +33,6 @@ class DBModel
     {
         $values = implode(',', $tableData);
         $sql = "SELECT $values FROM `$tableName` LIMIT $amtFields";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
     }
 
     public function delete($tableName, $fields, $amtFields = 5)
@@ -44,9 +44,7 @@ class DBModel
         foreach($fields as $key=>$val){
             $stmt->bindParam(':'.$val, $val);
         }
+
         $stmt->execute();
     }
 }
-$dbModel = new DBModel();
-//$dbModel->add('users', array('UserName'=>'Her', 'Password'=>'Gitler'));
-$dbModel->delete('users', array('UserName'),8);
