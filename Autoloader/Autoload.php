@@ -1,7 +1,8 @@
 <?php
 namespace Autoloader;
 
-class Autoload {
+class Autoload
+{
     private static $loadedFilename;
 
     public static function loadClass($className) {
@@ -9,6 +10,7 @@ class Autoload {
         self::$loadedFilename = ROOT.'/'.implode(DIRECTORY_SEPARATOR, $pathParts) . '.php';
         require_once(self::$loadedFilename);
     }
+
     public static function autoloadRegister() {
         spl_autoload_register('self::loadClass');
     }
