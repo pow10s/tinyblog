@@ -1,7 +1,6 @@
 <?php
 namespace libs;
 
-require('../libs/DBConnector.php');
 class DBModel
 {
     protected $connection;
@@ -48,5 +47,4 @@ class DBModel
     }
 }
 $dbModel = new DBModel();
-//$dbModel->add('users', array('UserName'=>'Her', 'Password'=>'Gitler'));
 $dbModel->delete('users', array('UserName'),8);

@@ -1,4 +1,5 @@
 <?php
+namespace libs;
 
 class DBConnector
 {
@@ -10,8 +11,8 @@ class DBConnector
 
         try {
 
-            self::$db = new PDO('mysql:host=localhost;dbname=users', 'root', '');
-            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$db = new \PDO('mysql:host=localhost;dbname=users', 'root', '');
+            self::$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         }
         catch(PDOException $e) {
