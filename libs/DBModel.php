@@ -23,7 +23,7 @@ class DBModel
         $stmt = $this->connection->prepare($sql);
 
         foreach($insData as $keyd => $valued){
-            $stmt->bindParam(':'. $keyd, $valued);
+            $stmt->bindParam(':'.$keyd, $valued);
         }
 
         $stmt->execute();
@@ -31,18 +31,32 @@ class DBModel
 
     public function select($tableName,$tableData, $amtFields = 5 )
     {
-        $values = implode(',', $tableData);
-        $sql = "SELECT $values FROM `$tableName` LIMIT $amtFields";
+        $values = implode(',', array_keys($tableData));
+        $val  = ':'. $values;
+        $sql = "SELECT * FROM `$tableName` WHERE $values = $val ";
+        $stmt = $this->connection->prepare($sql);
+
+        foreach($tableData as $key=>$vale){
+            $stmt->bindParam($val,$vale);
+        }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        foreach($result as $data => $name){
+            foreach($name as $dat => $nam){
+                print_r($nam);
+            }
+        }
     }
 
     public function delete($tableName, $fields, $amtFields = 5)
     {
-        $values = implode(',', $fields);
-        $sql = "DELETE FROM `$tableName` ORDER BY $values LIMIT $amtFields";
+        $values = implode(',', array_keys($fields));
+        $val = ':'. $values;
+        $sql = "DELETE FROM `$tableName`WHERE $values = $val LIMIT $amtFields";
         $stmt = $this->connection->prepare($sql);
 
-        foreach($fields as $key=>$val){
-            $stmt->bindParam(':'.$val, $val);
+        foreach($fields as $key=>$vale){
+            $stmt->bindParam($val,$vale);
         }
 
         $stmt->execute();
