@@ -21,11 +21,10 @@ class DBModel
         $values[] ='(' . implode(',', $val) . ')';
         $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
         $stmt = $this->connection->prepare($sql);
-
-        foreach($insData as $keyd => $valued){
-            $stmt->bindParam(':'.$keyd, $valued);
-        }
-
+        $data[] = implode(',',$val);
+        $dat = implode(',',$data);
+        $import = implode(',',$insData);
+        $stmt->bindParam($dat,$import);
         $stmt->execute();
     }
 
@@ -43,22 +42,26 @@ class DBModel
         $result = $stmt->fetchAll();
         foreach($result as $data => $name){
             foreach($name as $dat => $nam){
-                print_r($nam);
+                return $nam;
             }
         }
     }
 
     public function delete($tableName, $fields, $amtFields = 5)
     {
-        $values = implode(',', array_keys($fields));
-        $val = ':'. $values;
-        $sql = "DELETE FROM `$tableName`WHERE $values = $val LIMIT $amtFields";
-        $stmt = $this->connection->prepare($sql);
+        $values = array();
+        $keys =implode(",",array_keys($fields));
 
-        foreach($fields as $key=>$vale){
-            $stmt->bindParam($val,$vale);
+        foreach($fields as $key => $value){
+            $val[] = ':' . $key ;
         }
 
+        $values[] =implode(',', $val);
+        $field =  implode(',',$fields);
+        $va = implode(',',$values);
+        echo $sql = "DELETE FROM `$tableName`WHERE $keys = ".$va . "  LIMIT $amtFields";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam($va,$field);
         $stmt->execute();
     }
 }
