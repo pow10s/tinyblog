@@ -18,13 +18,12 @@ class DBModel
             $val[] = ':' . $key ;
         }
 
-        $values[] ='(' . implode(',', $val) . ')';
-        $sql = "INSERT INTO `$insName`".$keys."VALUES".implode(',', $values);
+        $values ='(' . implode(',', $val) . ')';
+       echo $sql = "INSERT INTO `$insName`".$keys."VALUES".$values;
         $stmt = $this->connection->prepare($sql);
-        $data[] = implode(',',$val);
-        $dat = implode(',',$data);
-        $import = implode(',',$insData);
-        $stmt->bindParam($dat,$import);
+        foreach($insData as $key => $value){
+            $stmt->bindParam(':'.$key, $value);
+        }
         $stmt->execute();
     }
 
