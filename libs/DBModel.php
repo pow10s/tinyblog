@@ -5,7 +5,8 @@ class DBModel
 {
     protected $connection;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->connection = DBConnector::getConnection();
     }
 
@@ -14,53 +15,67 @@ class DBModel
         $values = array();
         $keys =" (`".implode("`, `",array_keys($insData))."`)";
 
-        foreach($insData as $key => $value){
+        foreach($insData as $key => $value)
+        {
             $val[] = ':' . $key ;
         }
 
         $values ='(' . implode(',', $val) . ')';
-       echo $sql = "INSERT INTO `$insName`".$keys."VALUES".$values;
+        $sql = "INSERT INTO `$insName`".$keys."VALUES".$values;
         $stmt = $this->connection->prepare($sql);
-        foreach($insData as $key => $value){
-            $stmt->bindParam(':'.$key, $value);
+
+        foreach($insData as $key => $value)
+        {
+            $stmt->bindValue(':'.$key, $value);
         }
+
         $stmt->execute();
     }
 
     public function select($tableName,$tableData, $amtFields = 5 )
     {
-        $values = implode(',', array_keys($tableData));
-        $val  = ':'. $values;
-        $sql = "SELECT * FROM `$tableName` WHERE $values = $val ";
+        $values = array();
+        $keys =" (`".implode("`, `",array_keys($tableData))."`)";
+
+        foreach($tableData as $key => $value)
+        {
+            $val[] = ':' . $key ;
+        }
+
+        $values ='(' . implode(',', $val) . ')';
+        $sql = "SELECT $keys FROM $tableName WHERE $keys = $values";
         $stmt = $this->connection->prepare($sql);
 
-        foreach($tableData as $key=>$vale){
-            $stmt->bindParam($val,$vale);
+        foreach($tableData as $key => $value)
+        {
+            $stmt->bindValue(':'.$key, $value);
         }
+
         $stmt->execute();
         $result = $stmt->fetchAll();
-        foreach($result as $data => $name){
-            foreach($name as $dat => $nam){
-                return $nam;
-            }
-        }
+        return($result);
+
     }
 
     public function delete($tableName, $fields, $amtFields = 5)
     {
         $values = array();
-        $keys =implode(",",array_keys($fields));
+        $keys =" (`".implode("`, `",array_keys($fields))."`)";
 
-        foreach($fields as $key => $value){
+        foreach($fields as $key => $value)
+        {
             $val[] = ':' . $key ;
         }
 
-        $values[] =implode(',', $val);
-        $field =  implode(',',$fields);
-        $va = implode(',',$values);
-        echo $sql = "DELETE FROM `$tableName`WHERE $keys = ".$va . "  LIMIT $amtFields";
+        $values ='(' . implode(',', $val) . ')';
+        $sql = "DELETE FROM `$tableName`WHERE $keys = ".$values . "  LIMIT $amtFields";
         $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam($va,$field);
+
+        foreach($fields as $key=>$value)
+        {
+            $stmt->bindValue(':'.$key, $value);
+        }
+
         $stmt->execute();
     }
 }
