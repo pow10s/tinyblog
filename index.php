@@ -7,7 +7,25 @@ $router = new libs\Router();
 $router->run();
 $cookie = new libs\Cookie();
 $dbModel = new \libs\DBModel();
-$dbModel->add('users', array('UserName'=>'stosdima', 'Password'=>'23213', 'Email'=>'stsodima@gmail.com'));
-//$result =  $dbModel->select('users',array('UserName'=>'stosdima'), 1);
-//print_r($result);
-//$dbModel->delete('users',array('UserName' =>'stosdima'), 1);
+
+try {
+    $dbModel->add('users', array('UserName' => 'kvaka', 'Password' => '23213'));
+}catch(Exception $e){
+    echo $e->getMessage();
+}
+
+/*try {
+    $result =  $dbModel->select('users',array('UserName'=>'stosdima'), 1);
+    print_r($result);
+}catch(Exception $e){
+    echo $e->getMessage();
+}
+
+try {
+    $dbModel->delete('users',array('UserName' =>'stosdima'), 1);
+}catch(Exception $e){
+    echo $e->getMessage();
+}*/
+
+
+
