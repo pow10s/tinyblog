@@ -1,5 +1,6 @@
 <?php
 namespace libs;
+
 class ValidationFields {
 
     static function checkMail($email){
