@@ -7,4 +7,14 @@ class UserModel extends \libs\DBModel
    {
         $this->add('users',$params);
    }
+
+    public function deleteUser($params,$count = 1)
+    {
+        $this->delete('users',$params,$count);
+    }
+
+    public function selectUser($params, $count)
+    {
+        $this->selectUser('users',$params,$count);
+    }
 }

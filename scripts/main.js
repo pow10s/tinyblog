@@ -1,15 +1,27 @@
 /**
  * Created by Dima on 07.10.2015.
  */
-var buttonObj = document.getElementById('processBtn');
-//buttonObj.onclick = function() {alert(document.getElementById('username').value);}
-function validate_form ()
-{
+$(document).ready(function(){
 
-    if ( document.usersData.user_name.value == "" || document.usersData.password.value == "" )
-    {
-        alert ( "Please input name or password" );
-        return false;
-    }
-    return true;
-}
+    $("#reg_form").validate({
+
+        rules:{
+
+            user_name:{
+                required: true,
+                minlength: 4,
+                maxlength: 16
+            },
+
+            password:{
+                required: true,
+                minlength: 6,
+                maxlength: 16
+            }
+        }
+
+    });
+
+});
+
+

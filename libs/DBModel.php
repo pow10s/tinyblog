@@ -74,5 +74,26 @@ class DBModel
             $stmt->execute();
 
     }
-}
 
+    public function update($tableName,$tableData, $id )
+    {
+        $values = array();
+        $keys = implode("`, `", array_keys($tableData));
+
+        foreach ($tableData as $key => $value) {
+            $val[] = ':' . $key;
+        }
+
+        $values = implode(',', $val);
+        $sql = "UPDATE $tableName SET $keys = $values WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+
+        foreach ($tableData as $key => $value) {
+            $stmt->bindValue(':' . $key, $value);
+            $stmt->bindParam(':id',$id);
+        }
+
+        $stmt->execute();
+
+    }
+}
