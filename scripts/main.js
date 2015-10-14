@@ -17,6 +17,12 @@ $(document).ready(function(){
                 required: true,
                 minlength: 6,
                 maxlength: 16
+            },
+
+            email:{
+                required: true,
+                minlength: 6,
+                maxlength: 25
             }
         }
 

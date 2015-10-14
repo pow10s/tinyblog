@@ -7,7 +7,7 @@ class RegisterController
         $view->renderPartial('register');
         if (isset($_POST['send_btn'])) {
             $addUsers = new \models\UserModel();
-            $addUsers->addUser(array('UserName'=>$_POST['user_name'], 'Password'=>$_POST['password']));
+            $addUsers->addUser(array('Email'=>$_POST['email'],'UserName'=>$_POST['user_name'], 'Password'=>$_POST['password']));
         }
     }
 }
