@@ -7,7 +7,9 @@ class RegisterController
         $view->renderPartial('register');
         if (isset($_POST['send_btn'])) {
             $addUsers = new \models\UserModel();
-            $addUsers->addUser(array('Email'=>$_POST['email'],'UserName'=>$_POST['user_name'], 'Password'=>$_POST['password']));
+            $hash = new \libs\Hashing();
+            $result = $hash->hash($_POST['user_name']);
+            $addUsers->addUser(array('Email'=>$_POST['email'],'UserName'=>$_POST['user_name'], 'Password'=>$result));
         }
     }
 }
