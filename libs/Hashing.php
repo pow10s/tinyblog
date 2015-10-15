@@ -3,14 +3,22 @@ namespace libs;
 
 class Hashing
 {
-    public function hash($password){
-       $result =  crypt($password);
-       return $result;
+    private $salt;
+
+    public function get()
+    {
+        return $this->salt;
     }
-    public function chackHash($password){
-        $pass_hash = crypt($password);
-        if(crypt($password, $pass_hash) == $pass_hash) {
-             echo 'already used';
-        }
+
+    public function set($salt)
+    {
+        $this->salt=$salt;
     }
+
+    public function hash($password)
+    {
+        $pass = sha1(md5($password).$this->salt);
+        return $pass;
+    }
+
 }

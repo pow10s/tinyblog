@@ -15,6 +15,6 @@ class UserModel extends \libs\DBModel
 
     public function selectUser($params, $count=1)
     {
-        $this->select('users',$params,$count);
+       return $this->select('users',$params,$count);
     }
 }
