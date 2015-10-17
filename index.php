@@ -1,7 +1,8 @@
 <?php
 require('config.php');
-require('Autoloader/Autoload.php');
-Autoloader\Autoload::autoloadRegister();
+require_once (__DIR__ . '/vendor/autoload.php');
+/*require('Autoloader/Autoload.php');
+Autoloader\Autoload::autoloadRegister();*/
 $router = new libs\Router();
 $router->run();
 echo "<link href='/css/style.css' rel='stylesheet'>";
