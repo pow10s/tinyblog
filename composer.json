@@ -9,10 +9,12 @@
     }
   ],
   "require": {
-    "autoload": {
-      "psr-4": {
-        "libs\\": ["libs/","models"]
-      }
+
+  },
+  "autoload": {
+    "psr-4": {
+      "libs\\": ["libs/"],
+      "models\\": ["models/"]
     }
   }
 }
