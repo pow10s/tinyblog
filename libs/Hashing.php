@@ -5,12 +5,12 @@ class Hashing
 {
     private $salt;
 
-    public function get()
+    public function getSalt()
     {
         return $this->salt;
     }
 
-    public function set($salt)
+    public function setSalt($salt)
     {
         $this->salt=$salt;
     }
