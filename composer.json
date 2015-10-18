@@ -8,9 +8,14 @@
       "email": "stosdima@gmail.com"
     }
   ],
-  "require": {
 
+  "require": {
+    "phpmailer/phpmailer": "~5.2"
   },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+
   "autoload": {
     "psr-4": {
       "libs\\": ["libs/"],
