@@ -12,7 +12,6 @@ class RegisterController
             $hasher->setSalt('942c916c16bf1f03dc157290d30d6312');
             $result = $hasher->hash($_POST['password']);
             $hashConfirm = $hasher->hash($_POST['user_name']);
-            $res = $users->selectUser(array('password' => $result), 1);
             if (isset($res[0][0]) != $result)
             {
                 $users->addUser(array('Email' => $_POST['email'], 'UserName' => $_POST['user_name'], 'Password' => $result, 'verificationCode'=>$hashConfirm));
@@ -21,20 +20,12 @@ class RegisterController
                 $mail->addAddress($_POST['email'], $_POST['user_name']);
                 $mail->isHTML(true);
                 $mail->Subject = "";
-                $hashSelect = $users->selectUser(array('verificationCode'=>$hashConfirm), 1);
-                if ($hashConfirm = $hashSelect[0][0]) {
-                    $mail->Body = "<p>"."<a href='tinyblog.dev'>$hashConfirm</a>". "</p>";
-                    $mail->AltBody = "Please confirm adress:";
-
-                    if (!$mail->send()) {
-                        echo "Mailer Error: " . $mail->ErrorInfo;
-                    } else {
-                        echo "Message has been sent successfully";
-                    }
-                    if (isset($_GET['tinyblog.dev']))
-                    {
-                        die('Your account registered');
-                    }
+                $mail->Body = "<p>"."<a href='http://tinyblog.dev/Verification/Verification'>$hashConfirm</a>". "</p>";
+                $mail->AltBody = "Please confirm adress:";
+                if (!$mail->send()) {
+                    echo "Mailer Error: " . $mail->ErrorInfo;
+                } else {
+                    echo "Message has been sent successfully";
                 }
 
             } else {
