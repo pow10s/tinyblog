@@ -41,7 +41,7 @@ class DBModel
             }
 
             $values = '(' . implode(',', $val) . ')';
-            $sql = "SELECT $keys FROM $tableName WHERE $keys = $values LIMIT $amtFields";
+            $sql = "SELECT $keys FROM $tableName WHERE ($keys = $values) LIMIT $amtFields";
             $stmt = $this->connection->prepare($sql);
 
             foreach ($tableData as $key => $value) {
