@@ -14,7 +14,8 @@ class Router
         $controller = ucfirst(array_shift($url)) . 'Controller';
         $action ='action' . ucfirst(array_pop($url));
         $param=$url;
-        $controllerFile = ROOT .'/controllers/' . $controller . '.php';
+        $controllerFile = strtok (ROOT .'/controllers/' . $controller . '.php','?');
+
         if (file_exists($controllerFile)){
             include($controllerFile);
             if(!is_callable($controller, $action)){

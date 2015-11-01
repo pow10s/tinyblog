@@ -1,5 +1,6 @@
 <?php
 
+
 class MenuController
 {
    public function actionMenu()

@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <title>Tinyblog</title>
 </head>
+<?php
+$view = new \libs\View();
+$view->renderPartial('header');
+
+?>
 <body>
-<h1>Tinyblog</h1>
+
 <?=$content?>
 
 </body>
+</html>
