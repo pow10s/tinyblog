@@ -7,8 +7,8 @@ class Cookie
     {
         setcookie ($cookieName,$cookieData, time()+3600, '/', NULL, 0 );
     }
-    public function delete($cookieName)
+    public function delete($cookieName, $cookieData)
     {
-        setcookie ($cookieName,"", time()-3600);
+        setcookie ($cookieName,$cookieData, time()-3600, '/', NULL, 0 );
     }
 }

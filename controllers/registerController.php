@@ -6,7 +6,7 @@ class RegisterController
     {
         if (empty($_COOKIE['UserName'])) {
             $view = new \libs\View();
-            $view->renderPartial('register');
+            $view->render('register');
             if (isset($_POST['send_btn'])) {
                 $hasher = new \libs\Hashing();
                 $users = new \models\UserModel();

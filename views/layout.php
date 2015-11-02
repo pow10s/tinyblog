@@ -7,7 +7,6 @@
 <?php
 $view = new \libs\View();
 $view->renderPartial('header');
-
 ?>
 <body>
 
