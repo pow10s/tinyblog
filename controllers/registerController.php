@@ -7,6 +7,7 @@ class RegisterController
         if (empty($_COOKIE['UserName'])) {
             $view = new \libs\View();
             $view->render('register');
+
             if (isset($_POST['send_btn'])) {
                 $hasher = new \libs\Hashing();
                 $users = new \models\UserModel();
@@ -14,8 +15,8 @@ class RegisterController
                 $hasher->setSalt('942c916c16bf1f03dc157290d30d6312');
                 $result = $hasher->hash($_POST['password']);
                 $hashConfirm = $hasher->hash($_POST['user_name']);
-                if (isset($res[0][0]) != $result) {
 
+                if (isset($res[0][0]) != $result) {
                     $users->addUser(array('Email' => $_POST['email'], 'UserName' => $_POST['user_name'], 'Password' => $result, 'verificationCode' => $hashConfirm));
                     $mail->From = "stosdima@gmail.com";
                     $mail->FromName = "Stos Dima";
@@ -25,6 +26,7 @@ class RegisterController
                     $mail->Body = "<p>" . "<a href = " . BASE_URL . '/Verification/Verification' . '?hash=' . $hashConfirm . ">" . 'Please click on link:' . "</a>" . "</p>";
                     $mail->Body = "<p>" . "<a href='http://tinyblog.dev/Verification/Verification'>$hashConfirm</a>" . "</p>";
                     $mail->AltBody = "Please confirm adress:";
+
                     if (!$mail->send()) {
                         echo "Mailer Error: " . $mail->ErrorInfo;
                     } else {

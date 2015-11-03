@@ -9,6 +9,7 @@ class LoginController
         $selectLoginAndPass = new \models\UserModel();
         $hashPass = new \libs\Hashing();
         $cookie = new \libs\Cookie();
+
         if (empty($_COOKIE['UserName'])) {
             $view->render('login');
             if (isset($_POST['login_send_btn'])) {
