@@ -49,7 +49,7 @@ class DBModel
             }
 
             $stmt->execute();
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
             return ($result);
 
     }
