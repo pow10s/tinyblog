@@ -10,29 +10,33 @@ class DBModel
         $this->connection = DBConnector::getConnection();
     }
 
-    public  function add($insName,$insData)
+    public function add($insName, $insData)
     {
-            $values = array();
-            $keys = " (`" . implode("`, `", array_keys($insData)) . "`)";
+        $values = array();
+        $keys = " (`" . implode("`, `", array_keys($insData)) . "`)";
 
-            foreach ($insData as $key => $value) {
-                $val[] = ':' . $key;
-            }
+        foreach ($insData as $key => $value) {
+            $val[] = ':' . $key;
+        }
 
-            $values = '(' . implode(',', $val) . ')';
-            $sql = "INSERT INTO `$insName`" . $keys . "VALUES" . $values;
-            $stmt = $this->connection->prepare($sql);
+        $values = '(' . implode(',', $val) . ')';
+        $sql = "INSERT INTO `$insName`" . $keys . "VALUES" . $values;
+        $stmt = $this->connection->prepare($sql);
 
-            foreach ($insData as $key => $value) {
-                $stmt->bindValue(':' . $key, $value);
-            }
+        foreach ($insData as $key => $value) {
+            $stmt->bindValue(':' . $key, $value);
+        }
 
-            $stmt->execute();
+        $stmt->execute();
 
     }
 
-    public function select($tableName,$tableData, $amtFields = 5 )
+//    $this->select('users', 'user_name, id', );
+
+//select (id, name)string from users where string(id > 5  AND name = 'doma")
+    public function select($tableName,$columnName, $tableData = null, $amtFields = 5)
     {
+        if ($tableData == !null) {
             $values = array();
             $keys = " (`" . implode("`, `", array_keys($tableData)) . "`)";
 
@@ -41,41 +45,47 @@ class DBModel
             }
 
             $values = '(' . implode(',', $val) . ')';
-            $sql = "SELECT $keys FROM $tableName WHERE ($keys = $values) LIMIT $amtFields";
+            $sql = "SELECT $columnName FROM $tableName WHERE ($keys = $values) LIMIT $amtFields";
             $stmt = $this->connection->prepare($sql);
 
             foreach ($tableData as $key => $value) {
                 $stmt->bindValue(':' . $key, $value);
             }
-
             $stmt->execute();
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return ($result);
 
+            return $result;
+        }else{
+            $sql = "SELECT $columnName FROM $tableName";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result;
+        }
     }
 
     public function delete($tableName, $fields, $amtFields = 5)
     {
-            $values = array();
-            $keys = " (`" . implode("`, `", array_keys($fields)) . "`)";
+        $values = array();
+        $keys = " (`" . implode("`, `", array_keys($fields)) . "`)";
 
-            foreach ($fields as $key => $value) {
-                $val[] = ':' . $key;
-            }
+        foreach ($fields as $key => $value) {
+            $val[] = ':' . $key;
+        }
 
-            $values = '(' . implode(',', $val) . ')';
-            $sql = "DELETE FROM `$tableName`WHERE $keys = " . $values . "  LIMIT $amtFields";
-            $stmt = $this->connection->prepare($sql);
+        $values = '(' . implode(',', $val) . ')';
+        $sql = "DELETE FROM `$tableName`WHERE $keys = " . $values . "  LIMIT $amtFields";
+        $stmt = $this->connection->prepare($sql);
 
-            foreach ($fields as $key => $value) {
-                $stmt->bindValue(':' . $key, $value);
-            }
+        foreach ($fields as $key => $value) {
+            $stmt->bindValue(':' . $key, $value);
+        }
 
-            $stmt->execute();
+        $stmt->execute();
 
     }
 
-    public function update($tableName,$tableData, $id )
+    public function update($tableName, $tableData, $id)
     {
         $values = array();
         $keys = implode("`, `", array_keys($tableData));
@@ -90,7 +100,7 @@ class DBModel
 
         foreach ($tableData as $key => $value) {
             $stmt->bindValue(':' . $key, $value);
-            $stmt->bindParam(':id',$id);
+            $stmt->bindParam(':id', $id);
         }
 
         $stmt->execute();

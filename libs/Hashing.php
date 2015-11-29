@@ -12,12 +12,12 @@ class Hashing
 
     public function setSalt($salt)
     {
-        $this->salt=$salt;
+        $this->salt = $salt;
     }
 
     public function hash($password)
     {
-        $pass = sha1(md5($password).$this->salt);
+        $pass = sha1(md5($password) . $this->salt);
         return $pass;
     }
 

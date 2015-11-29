@@ -3,13 +3,13 @@ namespace libs;
 
 class Cookie
 {
-    public function create($cookieName,$cookieData)
+    public function create($cookieName,$cookieData, $time = 3600)
     {
-        setcookie ($cookieName,$cookieData, time()+3600, '/', NULL, 0 );
+        setcookie ($cookieName,$cookieData, time()+$time, '/');
     }
 
-    public function delete($cookieName, $cookieData)
+    public function delete($cookieName, $cookieData,$time)
     {
-        setcookie ($cookieName,$cookieData, time()-3600, '/', NULL, 0 );
+        setcookie ($cookieName,$cookieData, time()-$time, '/');
     }
 }
