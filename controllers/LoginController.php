@@ -1,4 +1,5 @@
 <?php
+
 class LoginController
 {
     public function actionLogin()
@@ -17,16 +18,21 @@ class LoginController
                 $hash = $hashPass->hash($_POST['log_password']);
 
                 try {
-                    $userData = $selectLoginAndPass->selectUser('UserName, Password',array('UserName' => $_POST['log_user_name'],'Password' => $hash),1);
+                    $userData = $selectLoginAndPass->selectUser(array('UserName','Password'),'UserName = :name AND Password = :pass',array(':name'=>$_POST['log_user_name'],':pass'=>$hash));
+
                     if (isset($userData)) {
-                        if ($userData['UserName'] == $_POST['log_user_name'] && $userData['Password'] == $hash) {
+                        
+                        if ($userData[0]['UserName'] == $_POST['log_user_name'] && $userData[0]['Password'] == $hash) {
                             $cookie->create('UserName', $_POST['log_user_name']);
+
                         }else echo 'Incorrect data';
                     }
                 } catch (Exception $e) {
+
                     echo $e->getMessage();
                 }
             }
+
         } else {
             $logg->actionLogg();
         }
