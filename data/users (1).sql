@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `Text` varchar(250) NOT NULL,
   `user_id_from` int(11) unsigned NOT NULL,
   `user_id_to` int(11) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `messages`
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `UserName` varchar(50) NOT NULL,
   `Password` varchar(150) NOT NULL,
   `verificationCode` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
