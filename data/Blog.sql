@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.0.10.6
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Ноя 03 2015 г., 17:23
--- Версия сервера: 5.6.24
--- Версия PHP: 5.5.24
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 02, 2015 at 01:06 AM
+-- Server version: 5.5.41-log
+-- PHP Version: 5.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `users`
+-- Database: `Blog`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE IF NOT EXISTS `messages` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(50) NOT NULL,
   `Text` varchar(250) NOT NULL,
   `user_id_from` int(11) unsigned NOT NULL,
-  `user_id_to` int(11) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+  `user_id_to` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `messages_users_fk` (`user_id_from`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп данных таблицы `messages`
+-- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`ID`, `Title`, `Text`, `user_id_from`, `user_id_to`) VALUES
@@ -82,55 +84,33 @@ INSERT INTO `messages` (`ID`, `Title`, `Text`, `user_id_from`, `user_id_to`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `ID` int(11) unsigned NOT NULL,
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Email` varchar(50) NOT NULL,
   `UserName` varchar(50) NOT NULL,
   `Password` varchar(150) NOT NULL,
-  `verificationCode` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;
+  `verificationCode` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=309 ;
 
 --
--- Дамп данных таблицы `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ID`, `Email`, `UserName`, `Password`, `verificationCode`) VALUES
 (299, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
-(300, 'stosdima@gmail.com', 's1t2o3s4', 'f7963737e8b46161ede6ec001a0bfa7572359fa3', 'a2c9b56691d388b649f2061412f8d8455d8e498b');
+(300, 'stosdima@gmail.com', 's1t2o3s4', 'f7963737e8b46161ede6ec001a0bfa7572359fa3', 'a2c9b56691d388b649f2061412f8d8455d8e498b'),
+(302, 'dimas@gmail.com', 'dimass', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '2f1cce5b6252eb2a626f998b092817dedecfab63'),
+(303, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
+(304, 'sdsdsdsd', 'stosbsh', '506a334ac93a2c9eb383b33430c7d1ab9fb192f3', '7d54ab7c421d91e0b26042fa6647399fd3652923'),
+(305, 'olyamahanko@mail.ru', 'dimass', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '2f1cce5b6252eb2a626f998b092817dedecfab63'),
+(306, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
+(307, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
+(308, 'stosdima@gmail.com', 'stsstsst', 'f02a9aba2974e8aa930fe8e3f6da436d04a01054', '11a4b862175161eabadf1a5aee55e5fa633a7263');
 
---
--- Индексы сохранённых таблиц
---
-
---
--- Индексы таблицы `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`ID`), ADD KEY `messages_users_fk` (`user_id_from`);
-
---
--- Индексы таблицы `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `messages`
---
-ALTER TABLE `messages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
---
--- AUTO_INCREMENT для таблицы `users`
---
-ALTER TABLE `users`
-  MODIFY `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=301;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

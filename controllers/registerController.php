@@ -23,8 +23,7 @@ class RegisterController
                     $mail->addAddress($_POST['email'], $_POST['user_name']);
                     $mail->isHTML(true);
                     $mail->Subject = "";
-                    $mail->Body = "<p>" . "<a href = " . BASE_URL . '/Verification/Verification' . '?hash=' . $hashConfirm . ">" . 'Please click on link:' . "</a>" . "</p>";
-                    $mail->Body = "<p>" . "<a href='http://tinyblog.dev/Verification/Verification'>$hashConfirm</a>" . "</p>";
+                    $mail->Body = "<p>" . "<a href = " . BASE_URL . '/Verification/Verification' . '?hash=' . $hashConfirm . ">" . 'Click' . "</a>" . "</p>";
                     $mail->AltBody = "Please confirm adress:";
 
                     if (!$mail->send()) {

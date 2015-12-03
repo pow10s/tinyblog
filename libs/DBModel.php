@@ -32,37 +32,30 @@ class DBModel
     }
 
 //    $this->select('users', 'user_name, id', );
-
 //select (id, name)string from users where string(id > 5  AND name = 'doma")
-    public function select($tableName,$columnName, $tableData = null, $amtFields = 5)
+    public function select($tableName, $columnName, $tableData = ' ', $injection = '',$limit = 1)
     {
-        if ($tableData == !null) {
-            $values = array();
-            $keys = " (`" . implode("`, `", array_keys($tableData)) . "`)";
+        {
+            $columnNameValues = implode(',', $columnName);
 
-            foreach ($tableData as $key => $value) {
-                $val[] = ':' . $key;
+            if ($tableData == ' ') {
+                $sql = "SELECT $columnNameValues FROM $tableName";
+                $stmt = $this->connection->prepare($sql);
+                $stmt->execute();
+                $res = $stmt->fetchAll();
+                return $res;
+
+            } else {
+                $sql = "SELECT $columnNameValues FROM $tableName WHERE $tableData LIMIT $limit";
+                $stmt = $this->connection->prepare($sql);
+                $stmt->execute($injection);
+                $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $result;
             }
 
-            $values = '(' . implode(',', $val) . ')';
-            $sql = "SELECT $columnName FROM $tableName WHERE ($keys = $values) LIMIT $amtFields";
-            $stmt = $this->connection->prepare($sql);
-
-            foreach ($tableData as $key => $value) {
-                $stmt->bindValue(':' . $key, $value);
-            }
-            $stmt->execute();
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-            return $result;
-        }else{
-            $sql = "SELECT $columnName FROM $tableName";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return $result;
         }
     }
+
 
     public function delete($tableName, $fields, $amtFields = 5)
     {
