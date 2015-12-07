@@ -7,9 +7,7 @@ class Confirmation
     {
         $hashCheck = new \models\UserModel();
         $selectedHash = $hashCheck->selectUser(array('verificationCode'=>$hash));
-        print_r($selectedHash);
 
-        exit;
         if(isset($selectedHash)) {
             if($selectedHash == $hash) {
                 $hashCheck->deleteUser(array('verificationCode' => $hash));
