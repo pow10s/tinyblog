@@ -1,7 +1,4 @@
 <html>
-<head>
-    <title>Tinyblog</title>
-</head>
 <body>
 <form method="post">
 <?php

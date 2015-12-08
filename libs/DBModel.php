@@ -33,25 +33,24 @@ class DBModel
 
 //    $this->select('users', 'user_name, id', );
 //select (id, name)string from users where string(id > 5  AND name = 'doma")
-    public function select($tableName, $columnName, $tableData = ' ', $params = '',$limit = 1)
+    public function select($tableName, $columnName, $tableData = '', $params = '', $limit = 1)
     {
         {
             $columnNameValues = implode(',', $columnName);
+            $sql = "SELECT $columnNameValues FROM $tableName";
+            $stmt = $this->connection->prepare($sql);
 
-            if ($tableData == ' ') {
-                $sql = "SELECT $columnNameValues FROM $tableName";
-                $stmt = $this->connection->prepare($sql);
+            if ($tableData == '') {
                 $stmt->execute();
-                $res = $stmt->fetchAll();
-                return $res;
+
 
             } else {
-                $sql = "SELECT $columnNameValues FROM $tableName WHERE $tableData LIMIT $limit";
-                $stmt = $this->connection->prepare($sql);
+                $sql .= "WHERE $tableData LIMIT $limit";
                 $stmt->execute($params);
-                $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-                return $result;
+
             }
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
 
         }
     }

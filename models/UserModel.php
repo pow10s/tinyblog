@@ -13,7 +13,7 @@ class UserModel extends \libs\DBModel
         $this->delete('users',$params,$count);
     }
 
-    public function selectUser($columnName,$tableData =' ',$params = ' ',$limit = 1)
+    public function selectUser($columnName,$tableData ='',$params = '',$limit = 1)
     {
        return $this->select('users',$columnName,$tableData,$params,$limit);
     }

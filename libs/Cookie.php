@@ -13,3 +13,4 @@ class Cookie
         setcookie ($cookieName,$cookieData, time()-$time, '/');
     }
 }
+?>

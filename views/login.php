@@ -1,7 +1,4 @@
 <html>
-<head>
-    <title>Tinyblog</title>
-</head>
 <body>
 <form name = "login_form" method="post" id ="log_form">
     <h1>Tinyblog</h1>
@@ -14,3 +11,4 @@
     <p> <input type = "submit" name = "login_send_btn" value = "Send" id="loginProcessBtn"></p>
 </form>
 </body>
+</html>

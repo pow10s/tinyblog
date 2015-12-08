@@ -10,7 +10,7 @@ class LoginController
         $selectLoginAndPass = new \models\UserModel();
         $hashPass = new \libs\Hashing();
         $cookie = new \libs\Cookie();
-
+        $message = new \libs\Message();
         if (empty($_COOKIE['UserName'])) {
             $view->render('login');
 
@@ -19,13 +19,13 @@ class LoginController
                 $hash = $hashPass->hash($_POST['log_password']);
 
                 try {
-                    $userData = $selectLoginAndPass->selectUser(array('UserName', 'Password'), 'UserName = :name AND Password = :pass', array(':name' => $_POST['log_user_name'], ':pass' => $hash));
+                    $userData = $selectLoginAndPass->selectUser(array('user_name', 'password'), 'user_name = :name AND password = :pass', array(':name' => $_POST['log_user_name'], ':pass' => $hash));
 
-                        if ($userData[0]['UserName'] == $_POST['log_user_name'] && $userData[0]['Password'] == $hash) {
-                            $cookie->create('UserName', $_POST['log_user_name'], 3600);
-                            echo 'Thanks';
+                        if ($userData[0]['user_name'] == $_POST['log_user_name'] && $userData[0]['password'] == $hash) {
+                            $cookie->create('user_name', $_POST['log_user_name'], 3600);
+                            $message->sendMessage('Thanks');
                         } else {
-                            echo 'user doesnt exist';
+                            $message->sendMessage('user doesnt exist');
                         }
 
                 } catch (Exception $e) {

@@ -1,7 +1,4 @@
 <html>
-<head>
-    <title>Tinyblog</title>
-    </head>
 <body>
 <form name = "register_form" method="post" id ="reg_form">
     <h1>Tinyblog</h1>
