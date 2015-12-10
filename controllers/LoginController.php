@@ -22,7 +22,7 @@ class LoginController
                     $hash = $hashPassAndLogin->hash($_POST['log_password']);
                     try {
                         $userData = $selectLoginAndPass->selectUser(array('user_name', 'password'), 'user_name = :name AND password = :pass', array(':name' => $_POST['log_user_name'], ':pass' => $hash));
-                        if ($userData[0]['user_name'] == $_POST['log_user_name'] && $userData[0]['password'] == $hash) {
+                        if (empty($existingInDb) &&$userData[0]['user_name'] == $_POST['log_user_name'] && $userData[0]['password'] == $hash) {
                             $cookie->create('user_name', $_POST['log_user_name'], 3600);
                             $message->sendMessage('Thanks');
                         } else {
