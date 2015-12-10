@@ -3,18 +3,18 @@ namespace models;
 
 class UserModel extends \libs\DBModel
 {
-   public function  addUser($params)
-   {
-        $this->add('users',$params);
-   }
-
-    public function deleteUser($params,$count = 1)
+    public function addUser($params)
     {
-        $this->delete('users',$params,$count);
+        $this->add('users', $params);
     }
 
-    public function selectUser($columnName,$tableData ='',$params = '',$limit = 1)
+    public function deleteUser($params, $count = 1)
     {
-       return $this->select('users',$columnName,$tableData,$params,$limit);
+        $this->delete('users', $params, $count);
+    }
+
+    public function selectUser($columnName, $tableData = '', $params = '', $limit = 1)
+    {
+        return $this->select('users', $columnName, $tableData, $params, $limit);
     }
 }
