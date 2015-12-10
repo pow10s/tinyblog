@@ -12,7 +12,7 @@ class RegisterController
                 $hasher = new \libs\Hashing();
                 $users = new \models\UserModel();
                 $mail = new PHPMailer();
-                $hasher->setSalt('942c916c16bf1f03dc157290d30d6312');
+                $hasher->setSalt(SALT);
                 $result = $hasher->hash($_POST['password']);
                 $hashConfirm = $hasher->hash($_POST['user_name']);
 

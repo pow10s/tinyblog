@@ -9,3 +9,4 @@ define("DB_USER", "root");
 define("DB_PASS","");
 define('ROOT', dirname(__FILE__));
 define('VIEWS_BASEDIR', dirname(__FILE__).'/views/');
+define('SALT','942c916c16bf1f03dc157290d30d6312');
