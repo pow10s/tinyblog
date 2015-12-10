@@ -1,8 +1,3 @@
-<html>
-<head>
-    <link href="/css/headerStyle.css" rel="stylesheet">
-</head>
-<body>
 <ul class="dropdown">
     <li class="dropdown-top">
         <p>Menu</p>
@@ -14,5 +9,3 @@
         </ul>
     </li>
     </ul>
-</body>
-</html>

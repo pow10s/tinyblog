@@ -1,10 +1,10 @@
 <?php
+<<<<<<< HEAD
 //ob_start();
+=======
+
+>>>>>>> 5688f428c80e711d638b334a4605d22bd83d65b0
 require('config.php');
 require_once (__DIR__ . '/vendor/autoload.php');
 $router = new libs\Router();
 $router->run();
-echo "<link href='/css/style.css' rel='stylesheet'>";
-echo "<script type='text/javascript' src='/scripts/jquery-2.1.4.min.js'>"."</script>";
-echo "<script type='text/javascript' src='/scripts/jquery.validate.min.js'>"."</script>";
-echo "<script type='text/javascript' src='/scripts/main.js'>"."</script>";

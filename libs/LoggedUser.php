@@ -3,7 +3,7 @@ namespace libs;
 
 class LoggedUser
 {
-    /*What does 'Logg' mean?*/
+
     public function actionLogg()
     {
         $view = new \libs\View();
@@ -11,7 +11,7 @@ class LoggedUser
         $view->render('loggedUser');
 
         if (isset($_POST['logout'])) {
-            $cookie->delete('UserName', $_COOKIE['UserName']);
+            $cookie->delete('user_name', $_COOKIE['user_name']);
         }
     }
 }
