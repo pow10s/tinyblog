@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 02, 2015 at 01:06 AM
+-- Generation Time: Dec 10, 2015 at 05:49 PM
 -- Server version: 5.5.41-log
 -- PHP Version: 5.3.29
 
@@ -92,24 +92,27 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(50) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `password` varchar(150) NOT NULL,
-  `verification_code` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=309 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=321 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `Email`, `UserName`, `Password`, `verificationCode`) VALUES
-(299, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
-(300, 'stosdima@gmail.com', 's1t2o3s4', 'f7963737e8b46161ede6ec001a0bfa7572359fa3', 'a2c9b56691d388b649f2061412f8d8455d8e498b'),
-(302, 'dimas@gmail.com', 'dimass', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '2f1cce5b6252eb2a626f998b092817dedecfab63'),
-(303, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
-(304, 'sdsdsdsd', 'stosbsh', '506a334ac93a2c9eb383b33430c7d1ab9fb192f3', '7d54ab7c421d91e0b26042fa6647399fd3652923'),
-(305, 'olyamahanko@mail.ru', 'dimass', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '2f1cce5b6252eb2a626f998b092817dedecfab63'),
-(306, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
-(307, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b', '723addceae641d9910976600a19a3a87a209bde0'),
-(308, 'stosdima@gmail.com', 'stsstsst', 'f02a9aba2974e8aa930fe8e3f6da436d04a01054', '11a4b862175161eabadf1a5aee55e5fa633a7263');
+INSERT INTO `users` (`id`, `email`, `user_name`, `password`) VALUES
+(320, 'stosdima@gmail.com', 'stosdima', 'a2c9b56691d388b649f2061412f8d8455d8e498b');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verification_table`
+--
+
+CREATE TABLE IF NOT EXISTS `verification_table` (
+  `id` int(25) NOT NULL AUTO_INCREMENT,
+  `verification_code` varchar(70) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
