@@ -13,13 +13,15 @@ class RegisterController
                 $users = new \models\UserModel();
                 $mail = new PHPMailer();
                 $message = new \libs\Message();
+                $addVierificationInTable = new \libs\DBModel();
 
                 $hasher->setSalt(SALT);
                 $result = $hasher->hash($_POST['password']);
                 $hashConfirm = $hasher->hash($_POST['user_name']);
 
                 if (isset($res[0][0]) != $result) {
-                    $users->addUser(array('email' => $_POST['email'], 'user_name' => $_POST['user_name'], 'password' => $result, 'verification_code' => $hashConfirm));
+                    $users->addUser(array('email' => $_POST['email'], 'user_name' => $_POST['user_name'], 'password' => $result));
+                    $addVierificationInTable->add('verification_table',array('verification_code'=>$hashConfirm));
                     $mail->From = "stosdima@gmail.com";
                     $mail->FromName = "Stos Dima";
                     $mail->addAddress($_POST['email'], $_POST['user_name']);

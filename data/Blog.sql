@@ -88,12 +88,12 @@ INSERT INTO `messages` (`ID`, `Title`, `Text`, `user_id_from`, `user_id_to`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `Email` varchar(50) NOT NULL,
-  `UserName` varchar(50) NOT NULL,
-  `Password` varchar(150) NOT NULL,
-  `verificationCode` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `verification_code` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=309 ;
 
 --

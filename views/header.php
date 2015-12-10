@@ -1,5 +1,3 @@
-<html>
-<body>
 <ul class="dropdown">
     <li class="dropdown-top">
         <p>Menu</p>
@@ -12,5 +10,3 @@
         </ul>
     </li>
     </ul>
-</body>
-</html>
