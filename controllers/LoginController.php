@@ -17,8 +17,7 @@ class LoginController
                 $hashPassAndLogin->setSalt(SALT);
                 $hashLogin = $hashPassAndLogin->hash($_POST['log_user_name']);
                 $existingInDb = $verificationHash->select('verification_table', array('verification_code'), 'verification_code = :code', array(':code' => $hashLogin));
-                if (empty($existingInDb) && $hashLogin !== $existingInDb[0]['verification_code']) {
-
+                if (empty($existingInDb) || $hashLogin !== $existingInDb[0]['verification_code']) {
                     $hash = $hashPassAndLogin->hash($_POST['log_password']);
                     try {
                         $userData = $selectLoginAndPass->selectUser(array('user_name', 'password'), 'user_name = :name AND password = :pass', array(':name' => $_POST['log_user_name'], ':pass' => $hash));
