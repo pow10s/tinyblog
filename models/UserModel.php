@@ -21,9 +21,9 @@ class UserModel extends \libs\DBModel
     public function isUserExist($columnName, $tableData = null, $params = null,$comparableItem)
     {
         $result = $this->select('users', $columnName, $tableData, $params);
-        foreach($result as $key =>$value)
+        foreach($result as $keys =>$value)
         {
-            foreach($value as $ke => $val)
+            foreach($value as $key => $val)
             {
                 if($val == $comparableItem){
                     return true;
