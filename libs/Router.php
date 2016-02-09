@@ -24,7 +24,7 @@ class Router
 
         if (file_exists($controllerFile)) {
             include($controllerFile);
-            if (!is_callable($controller, $action)) {
+            if (!is_callable([$controller, $action])) {
                 echo 'Error 404';
             } else {
                 $object = new $controller;
