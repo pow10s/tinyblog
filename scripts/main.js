@@ -27,7 +27,30 @@ $(document).ready(function(){
         }
 
     });
+$('input[name=add_user_btn]').click(
+    function()
+    {
+        var email = $('input[name=add_email]').val();
+        var login = $('input[name=add_login]').val();
+        var password = $('input[name=add_password]').val();
+        $.ajax(
+            {
+                type: "POST",
+                url: "/AddUser/AddUser",
+                data: {add_email:email,add_login:login,add_password:password},
+                success: function(email,login,password)
+                {
 
+                    alert("User was added");
+                    location.reload();
+
+
+                }
+            }
+        );
+    }
+);
 });
+
 
 
